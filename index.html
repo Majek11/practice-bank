@@ -702,6 +702,9 @@
 
     <script src="questions.js"></script>
     <script>
+        var CHAPTERS = window.CHAPTERS || (typeof CHAPTERS !== 'undefined' ? CHAPTERS : []);
+        var QUESTIONS = window.QUESTIONS || (typeof QUESTIONS !== 'undefined' ? QUESTIONS : []);
+
         let currentView = "grid";
         let activeChapter = "All";
         let activeDiff = "All";
