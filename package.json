@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "echo 'Static build ready'",
     "restart": "pkill -f 'node server.js' || true && sleep 1 && node server.js"
   }
 }
