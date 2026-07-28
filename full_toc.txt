@@ -1,0 +1,842 @@
+24
+
+Contents
+
+28 Networking
+29 Java Persistence API (JPA)
+30 JavaServer™ Faces Web Apps: Part 1
+31 JavaServer™ Faces Web Apps: Part 2
+32 REST-Based Web Services
+33 (Optional) ATM Case Study, Part 1:
+Object-Oriented Design with the UML
+
+34 (Optional) ATM Case Study, Part 2:
+Implementing an Object-Oriented Design
+
+35 Swing GUI Components: Part 2
+36 Java Module System and Other Java 9 Features
+F Using the Java API Documentation
+G Creating Documentation with javadoc
+H Unicode®
+I Formatted Output
+J Number Systems
+K Bit Manipulation
+L Labeled break and continue Statements
+M UML 2: Additional Diagram Types
+N Design Patterns
+
+Foreword
+Throughout my career I’ve met and interviewed many expert Java developers who’ve
+learned from Paul and Harvey, through one or more of their college textbooks, professional books, videos and corporate training. Many Java User Groups have joined together
+around the Deitels’ publications, which are used internationally in university courses and
+professional training programs. You are joining an elite group.
+
+How do I become an expert Java developer?
+This is one of the most common questions I receive at talks for university students and at
+events with Java professionals. Students want to become expert developers—and this is a
+great time to be one.
+The market is wide open, full of opportunities and fascinating projects, especially for
+those who take the time to learn, practice and master software development. The world
+needs good, focused expert developers.
+So, how do you do it? First, let’s be clear: Software development is hard. But do not
+be discouraged. Mastering it opens the door to great opportunities. Accept that it’s hard,
+embrace the complexity, enjoy the ride. There are no limits to how much you can expand
+your skills.
+Software development is an amazing skill. It can take you anywhere. You can work in
+any field. From nonprofits making the world a better place, to bleeding-edge biological
+technologies. From the frenetic daily run of the financial world to the deep mysteries of
+religion. From sports to music to acting. Everything has software. The success or failure of
+initiatives everywhere will depend on developers’ knowledge and skills.
+The push for you to get the relevant skills is what makes Java How to Program, 11/e so
+compelling. Written for students and new developers, it’s easy to follow. It’s written by
+authors who are educators and developers, with input over the years from some of the
+world’s leading academics and professional Java experts—Java Champions, open-source
+Java developers, even creators of Java itself. Their collective knowledge and experience will
+guide you. Even seasoned Java professionals will learn and grow their expertise with the
+wisdom in these pages.
+How can this book help you become an expert?
+Java was released in 1995—Paul and Harvey had the first edition of Java How to Program
+ready for Fall 1996 classes. Since that groundbreaking book, they’ve produced ten more
+editions, keeping current with the latest developments and idioms in the Java softwareengineering community. You hold in your hands the map that will enable you to rapidly
+develop your Java skills.
+The Deitels have broken down the humongous Java world into well-defined, specific
+goals. Put in your full attention, and consciously “beat” each chapter. You’ll soon find
+
+26
+
+Foreword
+
+yourself moving nicely along your road to excellence. And with both Java 8 and Java 9 in
+the same book, you’ll have up-to-date skills on the latest Java technologies.
+Most importantly, this book is not just meant for you to read—it’s meant for you to
+practice. Be it in the classroom or at home after work, experiment with the abundant
+sample code and practice with the book’s extraordinarily rich and diverse collection of
+exercises. Take the time to do all that is in here and you’ll be well on your way to achieving
+a level of expertise that will challenge professional developers out there. After working with
+Java for more than 20 years, I can tell you that this is not an exaggeration.
+For example, one of my favorite chapters is Lambdas and Streams. The chapter covers
+the topic in detail and the exercises shine—many real-world challenges that developers will
+encounter every day and that will help you sharpen your skills. After solving these exercises, novices and experienced developers alike will deeply understand these important
+Java features. And if you have a question, don’t be shy—the Deitels publish their email
+address in every book they write to encourage interaction.
+That’s also why I love the chapter about JShell—the new Java 9 tool that enables
+interactive Java. JShell allows you to explore, discover and experiment with new concepts,
+language features and APIs, make mistakes—accidentally and intentionally—and correct
+them, and rapidly prototype new code. It may prove to be the most important tool for
+leveraging your learning and productivity. Paul and Harvey give a full treatment of JShell
+that both students and experienced developers will be able to put to use immediately.
+I’m impressed with the care that the Deitels always take care to accommodate readers
+at all levels. They ease you into difficult concepts and deal with the challenges that professionals will encounter in industry projects.
+There’s lots of information about Java 9, the important new Java release. You can
+jump right in and learn the latest Java features. If you’re still working with Java 8, you can
+ease into Java 9 at your own pace—be sure to begin with the extraordinary JShell coverage.
+Another example is the amazing coverage of JavaFX—Java’s latest GUI, graphics and
+multimedia capabilities. JavaFX is the recommended toolkit for new projects. But if you’ll
+be working on legacy projects that use the older Swing API, those chapters are still available to you.
+Make sure to dig in on Paul and Harvey’s treatment of concurrency. They explain the
+basic concepts so clearly that the intermediate and advanced examples and discussions will
+be easy to master. You will be ready to maximize your applications’ performance in an
+increasingly multi-core world.
+I encourage you to participate in the worldwide Java community. There are many
+helpful folks out there who stand ready to help you. Ask questions, get answers and answer
+your peers’ questions. Along with this book, the Internet and the academic and professional communities will help speed you on your way to becoming an expert Java developer.
+I wish you success!
+Bruno Sousa
+bruno@javaman.com.br
+
+Java Champion
+Java Specialist at ToolsCloud
+President of SouJava (the Brazilian Java Society)
+SouJava representative at the Java Community Process
+
+Preface
+Welcome to the Java programming language and Java How to Program, Early Objects,
+Eleventh Edition! This book presents leading-edge computing technologies for students,
+instructors and software developers. It’s appropriate for introductory academic and professional course sequences based on the curriculum recommendations of the ACM and the
+IEEE professional societies,1 and for Advanced Placement (AP) Computer Science exam
+preparation.2 It also will help you prepare for most topics covered by the following Oracle
+Java Standard Edition 8 (Java SE 8) Certifications:3
+•
+
+Oracle Certified Associate, Java SE 8 Programmer
+
+•
+
+Oracle Certified Professional, Java SE 8 Programmer
+
+Our primary goal is to prepare college students to meet the Java programming challenges they’ll encounter in upper-level courses and in industry. We focus on software engineering best practices. At the heart of the book is the Deitel signature live-code
+approach—we present most concepts in the context of hundreds of complete working
+programs that have been tested on Windows®, macOS® and Linux®. The complete code
+examples are accompanied by live sample executions.
+
+New and Updated Features
+In the following sections, we discuss the key features and updates we’ve made for Java How
+to Program, 11/e, including:
+•
+
+Flexibility Using Java SE 8 or the New Java SE 9 (which includes Java SE 8)
+
+•
+
+Java How to Program, 11/e’s Modular Organization
+
+•
+
+Introduction and Programming Fundamentals
+
+•
+
+Flexible Coverage of Java SE 9: JShell, the Module System and Other Java SE 9
+Topics
+
+•
+
+Object-Oriented Programming
+
+1.
+
+Computer Science Curricula 2013 Curriculum Guidelines for Undergraduate Degree Programs in Computer Science, December 20, 2013, The Joint Task Force on Computing Curricula, Association for
+Computing Machinery (ACM), IEEE Computer Society.
+
+2.
+3.
+
+https://apstudent.collegeboard.org/apcourse/ap-computer-science-a/exam-practice
+http://bit.ly/OracleJavaSE8Certification (At the time of this writing, the Java SE 9 certifica-
+
+tion exams were not yet available.)
+
+28
+
+Preface
+•
+
+Flexible JavaFX/Swing GUI, Graphics and Multimedia Coverage
+
+•
+
+Data Structures and Generic Collections
+
+•
+
+Flexible Lambdas and Streams Coverage
+
+•
+
+Concurrency and Multi-Core Performance
+
+•
+
+Database: JDBC and JPA
+
+•
+
+Web-Application Development and Web Services
+
+•
+
+Optional Online Object-Oriented Design Case Study
+
+Flexibility Using Java SE 8 or the New Java SE 9
+To meet the needs of our diverse audiences, we designed the book for college and professional courses based on Java SE 8 or Java SE 9, which from this point forward we’ll refer
+to as Java 8 and Java 9, respectively. Each feature first introduced in Java 8 or Java 9 is
+accompanied by an 8 or 9 icon in the margin, like those to the left of this paragraph. The
+new Java 9 capabilities are covered in clearly marked, easy-to-include-or-omit chapters and
+sections—some in the print book and some online. Figures 1 and 2 list some key Java 8
+and Java 9 features that we cover, respectively.
+Java 8 features
+Lambdas and streams
+Type-inference improvements
+@FunctionalInterface annotation
+Bulk data operations for Java Collections—
+filter, map and reduce
+Library enhancements to support lambdas (e.g.,
+java.util.stream, java.util.function)
+
+Date & Time API (java.time)
+Parallel array sorting
+Java concurrency API improvements
+static and default methods in interfaces
+Functional interfaces that define only one
+abstract method and can include static
+and default methods
+
+Fig. 1 | Some key features we cover that were introduced in Java 8.
+Java 9 features
+In the Print Book
+New JShell chapter
+_ is no longer allowed as an identifier
+private interface methods
+Effectively final variables can be used in trywith-resources statements
+Mention of the Stack Walking API
+Mention of JEP 254, Compact Strings
+Collection factory methods
+
+On the Companion Website
+Module system
+HTML5 Javadoc enhancements
+Matcher class’s new method overloads
+CompletableFuture enhancements
+JavaFX 9 skin APIs and other enhancements
+Mentions of:
+Overview of Java 9 security enhancements
+G1 garbage collector
+Object serialization security enhancements
+Enhanced deprecation
+
+Fig. 2 | Some key new features we cover that were introduced in Java 9.
+
+Java How to Program, 11/e’s Modular Organization
+
+29
+
+Java How to Program, 11/e’s Modular Organization1
+The book’s modular organization helps instructors plan their syllabi.
+Java How to Program, 11/e, is appropriate for programming courses at various levels.
+Chapters 1–25 are popular in core CS 1 and CS 2 courses and introductory course
+sequences in related disciplines—these chapters appear in the print book. Chapters 26–36
+are intended for advanced courses and are located on the book’s Companion Website.
+
+Part 1: Introduction
+Chapter 1, Introduction to Computers, the Internet and Java
+Chapter 2, Introduction to Java Applications; Input/Output and Operators
+Chapter 3, Introduction to Classes, Objects, Methods and Strings
+Chapter 25, Introduction to JShell: Java 9’s REPL for Interactive Java
+
+Part 2: Additional Programming Fundamentals
+Chapter 4, Control Statements: Part 1; Assignment, ++ and -- Operators
+Chapter 5, Control Statements: Part 2; Logical Operators
+Chapter 6, Methods: A Deeper Look
+Chapter 7, Arrays and ArrayLists
+Chapter 14, Strings, Characters and Regular Expressions
+Chapter 15, Files, Input/Output Streams, NIO and XML Serialization
+
+Part 3: Object-Oriented Programming
+Chapter 8, Classes and Objects: A Deeper Look
+Chapter 9, Object-Oriented Programming: Inheritance
+Chapter 10, Object-Oriented Programming: Polymorphism and Interfaces
+Chapter 11, Exception Handling: A Deeper Look
+Part 4: JavaFX Graphical User Interfaces, Graphics and Multimedia
+Chapter 12, JavaFX Graphical User Interfaces: Part 1
+Chapter 13, JavaFX GUI: Part 2
+Chapter 22, JavaFX Graphics and Multimedia
+
+Part 5: Data Structures, Generic Collections, Lambdas and Streams
+Chapter 16, Generic Collections
+Chapter 17, Lambdas and Streams
+Chapter 18, Recursion
+Chapter 19, Searching, Sorting and Big O
+Chapter 20, Generic Classes and Methods: A Deeper Look
+Chapter 21, Custom Generic Data Structures
+
+1.
+
+The online chapters and VideoNotes will be available on the book’s Companion Website before Fall
+2017 classes and will be updated as Java 9 evolves. Please write to deitel@deitel.com if you need
+them sooner.
+
+30
+
+Preface
+
+Part 6: Concurrency; Networking
+Chapter 23, Concurrency
+Chapter 28, Networking
+
+Part 7: Database-Driven Desktop Development
+Chapter 24, Accessing Databases with JDBC
+Chapter 29, Java Persistence API (JPA)
+
+Part 8: Web App Development and Web Services
+Chapter 30, JavaServer™ Faces Web Apps: Part 1
+Chapter 31, JavaServer™ Faces Web Apps: Part 2
+Chapter 32, REST Web Services
+Part 9: Other Java 9 Topics
+Chapter 36, Java Module System and Other Java 9 Features
+Part 10: (Optional) Object-Oriented Design
+Chapter 33, ATM Case Study, Part 1: Object-Oriented Design with the UML
+Chapter 34, ATM Case Study Part 2: Implementing an Object-Oriented Design
+Part 11: (Optional) Swing Graphical User Interfaces and Java 2D Graphics
+Chapter 26, Swing GUI Components: Part 1
+Chapter 27, Graphics and Java 2D
+Chapter 35, Swing GUI Components: Part 2
+
+Introduction and Programming Fundamentals (Parts 1 and 2)
+Chapters 1 through 7 provide a friendly, example-driven treatment of traditional introductory programming topics. This book differs from most other Java textbooks in that it features
+an early objects approach—see the section “Object-Oriented Programming” later in this
+Preface. Note in the preceding outline that Part 1 includes the (optional) Chapter 25 on Java
+9’s new JShell. It’s optional because not all courses will want to cover JShell. For those that
+do, instructors and students will appreciate how JShell’s interactivity makes Java “come
+alive,” leveraging the learning process—see the next section on JShell.
+
+Flexible Coverage of Java 9: JShell, the Module System and Other
+Java 9 Topics (JShell Begins in Part 1; the Rest is in Part 9)
+JShell: Java 9’s REPL (Read-Eval-Print-Loop) for Interactive Java
+JShell provides a friendly environment that enables you to quickly explore, discover and
+experiment with Java’s language features and its extensive libraries. JShell replaces the tedious cycle of editing, compiling and executing with its read-evaluate-print-loop. Rather
+than complete programs, you write JShell commands and Java code snippets. When you
+enter a snippet, JShell immediately
+
+Flexible Coverage of Java 9: JShell, the Module System and Other Java 9 Topics
+
+31
+
+• reads it,
+• evaluates it and
+• prints messages that help you see the effects of your code, then it
+• loops to perform this process again for the next snippet.
+As you work through Chapter 25’s scores of examples and exercises, you’ll see how
+JShell and its instant feedback keep your attention, enhance your performance and speed
+the learning and software development processes.
+As a student you’ll find JShell easy and fun to use. It will help you learn Java features
+faster and more deeply and will help you verify that these features work the way they’re
+supposed to. As an instructor, you’ll appreciate how JShell encourages your students to dig
+in, and that it leverages the learning process. As a professional you’ll appreciate how JShell
+helps you rapidly prototype key code segments and how it helps you discover and experiment with new APIs.
+We chose a modular approach with the JShell content packaged in Chapter 25. The
+chapter:
+1. is easy to include or omit.
+2. is organized as a series of 16 sections, many of which are designed to be covered
+after a specific earlier chapter of the book (Fig. 3).
+3. offers rich coverage of JShell’s capabilities. It’s example-intensive—you should
+do each of the examples. Get JShell into your fingertips. You’ll appreciate how
+quickly and conveniently you can do things.
+4. includes dozens of Self-Review Exercises, each with an answer. These exercises
+can be done after you read Chapter 2 and Section 25.3. As you do each of them,
+flip the page and check your answer. This will help you master the basics of JShell
+quickly. Then as you do each of the examples in the remainder of the chapter
+you’ll master the vast majority of JShell’s capabilities.
+JShell discussions
+
+Can be covered after
+
+Section 25.3 introduces JShell, including starting a session,
+executing statements, declaring variables, evaluating
+expressions, JShell’s type-inference capabilities and more.
+
+Chapter 2, Introduction to Java
+Applications; Input/Output and
+Operators
+
+Section 25.4 discusses command-line input with Scanner
+in JShell.
+Section 25.5 discusses how to declare and use classes in
+JShell, including how to load a Java source-code file
+containing an existing class declaration.
+
+Chapter 3, Introduction to Classes,
+Objects, Methods and Strings
+
+Section 25.6 shows how to use JShell’s auto-completion
+capabilities to discover a class’s capabilities and JShell
+commands.
+
+Fig. 3 | Chapter 25 JShell discussions that are designed to be covered after specific earlier chapters. (Part 1 of 2.)
+
+32
+
+Preface
+
+JShell discussions
+
+Can be covered after
+
+Section 25.7 presents additional JShell auto-completion
+capabilities for experimentation and discovery, including viewing method parameters, documentation and
+method overloads.
+
+Chapter 6, Methods: A Deeper Look
+
+Section 25.8 shows how to declare and use methods in
+JShell, including forward referencing a method that
+does not yet exist in the JShell session.
+Section 25.9 shows how exceptions are handled in JShell.
+
+Chapter 7, Arrays and ArrayLists
+
+Section 25.10 shows how to add existing packages to the
+classpath and import them for use in JShell.
+
+Chapter 21, Custom Generic Data
+Structures
+
+The remaining JShell sections are reference material that can be covered after Section 25.10. Topics
+include using an external editor, a summary of JShell commands, getting help in JShell, additional
+features of /edit command, /reload command, /drop command, feedback modes, other JShell features configurable with /set, keyboard shortcuts for snippet editing, how JShell reinterprets Java for
+interactive use and IDE JShell support.
+
+Fig. 3 | Chapter 25 JShell discussions that are designed to be covered after specific earlier chapters. (Part 2 of 2.)
+New Chapter—The Java Module System and Other Java 9 Topics
+Because Java 9 was still under development when this book was published, we included an
+online chapter on the book’s Companion Website that discusses Java 9’s module system
+and various other Java 9 topics. This online content will be available before Fall 2017
+courses.
+
+Object-Oriented Programming (Part 3)
+Object-oriented programming. We use an early objects approach, introducing the basic
+concepts and terminology of object technology in Chapter 1. Students develop their first
+customized classes and objects in Chapter 3. Presenting objects and classes early gets students “thinking about objects” immediately and mastering these concepts more thoroughly. [For courses that require a late-objects approach, you may want to consider our sister
+book Java How to Program, Late Objects Version, 11/e.]
+Early objects real-world case studies. The early classes and objects presentation in
+Chapters 3–7 features Account, Student, AutoPolicy, Time, Employee, GradeBook and
+Card shuffling-and-dealing case studies, gradually introducing deeper OO concepts.
+Inheritance, Interfaces, Polymorphism and Composition. The deeper treatment of objectoriented programming in Chapters 8–10 features additional real-world case studies,
+including class Time, an Employee class hierarchy, and a Payable interface implemented
+in disparate Employee and Invoice classes. We explain the use of current idioms, such as
+“programming to an interface not an implementation” and “preferring composition to
+inheritance” in building industrial-strength applications.
+
+Flexible JavaFX GUI, Graphics and Multimedia Coverage
+
+33
+
+Exception handling. We integrate basic exception handling beginning in Chapter 7 then
+present a deeper treatment in Chapter 11. Exception handling is important for building
+mission-critical and business-critical applications. To use a Java component, you need to
+know not only how that component behaves when “things go well,” but also what exceptions that component “throws” when “things go poorly” and how your code should handle
+those exceptions.
+Class Arrays and ArrayList. Chapter 7 covers class Arrays—which contains methods for
+performing common array manipulations—and class ArrayList—which implements a
+dynamically resizable array-like data structure. This follows our philosophy of getting lots
+of practice using existing classes while learning how to define your own. The chapter’s rich
+selection of exercises includes a substantial project on building your own computer
+through the technique of software simulation. Chapter 21 includes a follow-on project on
+building your own compiler that can compile high-level language programs into machine
+language code that will actually execute on your computer simulator. Students in first and
+second programming courses enjoy these challenges.
+
+Flexible JavaFX GUI, Graphics and Multimedia Coverage (Part 4)
+and Optional Swing Coverage (Part 11)
+For instructors teaching introductory courses, we provide a scalable JavaFX GUI, graphics
+and multimedia treatment enabling instructors to choose the amount of JavaFX they
+want to cover:
+•
+
+from none at all,
+
+•
+
+to some or all of the optional introductory sections at the ends of the early chapters,
+
+•
+
+to a deep treatment of JavaFX GUI, graphics and multimedia in Chapters 12, 13
+and 22.
+
+We also use JavaFX in several GUI-based examples in Chapter 23, Concurrency and
+Chapter 24, Accessing Databases with JDBC.
+
+Flexible Early Treatment of JavaFX
+Students enjoy building applications with GUI, graphics, animations and videos. For
+courses that gently introduce GUI and graphics early, we’ve integrated an optional GUI
+and Graphics Case Study that introduces JavaFX-based graphical user interfaces (GUIs)
+and Canvas-based graphics.1 The goal of this case study is to create a simple polymorphic
+drawing application in which the user can select a shape to draw and the shape’s characteristics (such as its color, stroke thickness and whether it’s hollow or filled) then drag the
+mouse to position and size the shape. The case study builds gradually toward that goal,
+with the reader implementing a polymorphic drawing app in Chapter 10, and a more robust user interface in Exercise 13.9 (Fig. 4). For courses that include these optional early
+case study sections, instructors can opt to cover none, some or all of the deeper treatment
+in Chapters 12, 13 and 22 discussed in the next section.
+
+1.
+
+The deeper graphics treatment in Chapter 22 uses JavaFX shape types that can be added directly to
+the GUI using Scene Builder.
+
+34
+
+Preface
+
+Section or Exercise
+
+What you’ll do
+
+Section 3.6: A Simple GUI
+
+Display text and an image.
+
+Section 4.15: Event Handling
+and Drawing Lines
+
+In response to a Button click, draw lines using JavaFX
+graphics capabilities.
+
+Section 5.11: Drawing Rectangles and Ovals
+
+Draw rectangles and ovals.
+
+Section 6.13: Colors and Filled
+Shapes
+
+Draw filled shapes in multiple colors.
+
+Section 7.17: Drawing Arcs
+
+Draw a rainbow of colored arcs.
+
+Section 8.16: Using Objects
+with Graphics
+
+Store shapes as objects then have those objects to draw
+themselves on the screen.
+
+Section 10.14: Drawing with
+Polymorphism
+
+Identify the similarities between shape classes and create
+and use a shape class hierarchy.
+
+Exercise 13.9: Interactive
+Polymorphic Drawing
+Application
+
+A capstone exercise in which you’ll enable users to select each
+shape to draw, configure its properties (such as color and
+fill), and drag the mouse to position and size the shape.
+
+Fig. 4 | GUI and Graphics Case Study sections and exercise.
+Deeper Treatment of JavaFX GUI, Graphics and Multimedia in Chapters 12, 13 and 22
+For this 11th edition, we’ve significantly updated our JavaFX presentation and moved all
+three chapters into the print book, replacing our Swing GUI and graphics coverage (which
+is now online for instructors who want to continue with Swing). In the case study and in
+Chapters 12–13, we use JavaFX and Scene Builder—a drag-and-drop tool for creating
+JavaFX GUIs quickly and conveniently—to build several apps demonstrating various JavaFX layouts, controls and event-handling capabilities. In Swing, drag-and-drop tools and
+their generated code are IDE dependent. Scene Builder is a standalone tool that you can
+use separately or with any of the Java IDEs to do portable drag-and-drop GUI design. In
+Chapter 22, we present many JavaFX 2D and 3D graphics, animation and video capabilities. We also provide 36 programming exercises and projects that students will find challenging and entertaining, including many game-programming exercises. Despite the fact
+that the JavaFX chapters are spread out in the book, Chapter 22 can be covered immediately after Chapter 13.
+Swing GUI and Java 2D Graphics
+Swing is still widely used, but Oracle will provide only minor updates going forward. For
+instructors and readers who wish to continue using Swing, we’ve moved to the book’s Companion Website the 10th edition’s
+• optional Swing GUI and Graphics Case Study from Chapters 3–8, 10 and 13
+• Chapter 26, Swing GUI Components: Part 1
+• Chapter 27, Graphics and Java 2D
+• Chapter 35, Swing GUI Components: Part 2.
+See the “Companion Website” section later in this Preface.
+
+Data Structures and Generic Collections
+
+35
+
+Integrating Swing GUI Components in JavaFX GUIs
+Even if you move to JavaFX, you still can use your favorite Swing capabilities. For
+example, in Chapter 24, we demonstrate how to display database data in a Swing JTable
+component that’s embedded in a JavaFX GUI via a JavaFX 8 SwingNode. As you explore
+Java further, you’ll see that you also can incorporate JavaFX capabilities into your Swing
+GUIs.
+
+Data Structures and Generic Collections (Part 5)
+Data structures presentation. Chapter 7 and the chapters of Part 5 form the core of a data
+structures course. We begin with generic class ArrayList in Chapter 7. Our later data
+structures discussions (Chapters 16–21) provide a deeper treatment of generic collections—showing how to use the built-in collections of the Java API.
+We discuss recursion, which is important for many reasons including implementing
+tree-like, data-structure classes. For computer-science majors and students in related disciplines, we discuss popular searching and sorting algorithms for manipulating the contents of collections, and provide a friendly introduction to Big O—a means of describing
+mathematically how hard an algorithm might have to work to solve a problem. Most programmers should use the build-in searching and sorting capabilities of the collections
+classes.
+We then show how to implement generic methods and classes, and custom generic
+data structures (this, too, is intended for computer-science majors—most programmers
+should use the pre-built generic collections). Lambdas and streams (introduced in
+Chapter 17) are especially useful for working with generic collections.
+
+Flexible Lambdas and Streams Coverage (Chapter 17)
+The most significant new features in Java 8 were lambdas and streams. This book has several
+audiences, including
+• those who’d like a significant treatment of lambdas and streams
+• those who want a basic introduction with a few simple examples
+• those who do not want to use lambdas and streams yet.
+For this reason, we’ve placed most of the lambdas and streams treatment in Chapter 17,
+which is architected as a series of easy-to-include-or-omit sections that are keyed to the book’s
+earlier sections and chapters. We do integrate lambdas and streams into a few examples after
+Chapter 17, because their capabilities are so compelling.
+In Chapter 17, you’ll see that lambdas and streams can help you write programs faster,
+more concisely, more simply, with fewer bugs and that are easier to parallelize (to realize
+performance improvements on multi-core systems) than programs written with previous
+techniques. You’ll see that “functional programming” with lambdas and streams complements object-oriented programming.
+Many of Chapter 17’s sections are written so they can be covered earlier in the book
+(Fig. 5)—we suggest that students begin by covering Sections 17.2–17.7 after Chapter 7
+and that professionals begin by covering Sections 17.2–17.5 after Chapter 5. After reading
+Chapter 17, you’ll be able to cleverly reimplement many examples throughout the book.
+
+36
+
+Preface
+
+Lambdas and streams discussions
+
+Can be covered after
+
+Sections 17.2–17.5 introduce basic lambda and
+streams capabilities that you can use to replace
+counting loops, and discuss the mechanics of
+how streams are processed.
+
+Chapter 5, Control Statements: Part 2; Logical Operators
+
+Section 17.6 introduces method references and
+additional streams capabilities.
+
+Chapter 6, Methods: A Deeper Look
+
+Section 17.7 introduces streams capabilities that
+process one-dimensional arrays.
+
+Chapter 7, Arrays and ArrayLists
+
+Sections 17.8–17.10 demonstrate additional
+streams capabilities and present various functional interfaces used in streams processing.
+
+Chapter 10, Object-Oriented Programming:
+Polymorphism and Interfaces—
+Section 10.10 introduces Java 8 interface
+features (default methods, static
+methods and the concept of functional
+interfaces) for the functional interfaces
+that support lambdas and streams.
+
+Section 17.11 shows how to use lambdas and
+streams to process collections of String
+objects.
+
+Chapter 14, Strings, Characters and Regular
+Expressions
+
+Section 17.12 shows how to use lambdas and
+streams to process a List<Employee>.
+
+Chapter 16, Generic Collections
+
+Section 17.13 shows how to use lambdas and
+streams to process lines of text from a file.
+
+Chapter 15, Files, Input/Output Streams,
+NIO and XML Serialization
+
+Section 17.14 introduces streams of random values
+
+All earlier Chapter 17 sections.
+
+Section 17.15 introduces infinite streams
+
+All earlier Chapter 17 sections.
+
+Section 17.16 shows how to use lambdas to implement JavaFX event-listener interfaces.
+
+Chapter 12, JavaFX Graphical User Interfaces: Part 1
+
+Chapter 23, Concurrency, shows that programs using lambdas and streams are often easier to
+parallelize so they can take advantage of multi-core architectures to enhance performance. The
+chapter demonstrates parallel stream processing and shows that Arrays method parallelSort
+improves performance on multi-core architectures when sorting large arrays.
+
+Fig. 5 | Java 8 lambdas and streams discussions and examples.
+
+Concurrency and Multi-Core Performance (Part 6)
+We were privileged to have as a reviewer of Java How to Program, 10/e Brian Goetz, coauthor of Java Concurrency in Practice (Addison-Wesley). We updated Chapter 23, Concurrency, with Java 8 technology and idiom. We added a parallelSort vs. sort example
+that uses the Java 8 Date/Time API to time each operation and demonstrate parallelSort’s better performance on a multi-core system. We included a Java 8 parallel vs. sequential stream processing example, again using the Date/Time API to show performance
+improvements. We added a Java 8 CompletableFuture example that demonstrates se-
+
+Database: JDBC and JPA
+
+37
+
+quential and parallel execution of long-running calculations and we discuss CompletableFuture enhancements in the online Java 9 chapter. Finally, we added several new
+
+exercises, including one that demonstrates the problems with parallelizing Java 8 streams
+that apply non-associative operations and several that have the reader investigate and use
+the Fork/Join framework to parallelize recursive algorithms.
+JavaFX concurrency. In this edition, we converted Chapter 23’s Swing-based GUI examples to JavaFX. We now use JavaFX concurrency features, including class Task to execute
+long-running tasks in separate threads and display their results in the JavaFX application
+thread, and the Platform class’s runLater method to schedule a Runnable for execution
+in the JavaFX application thread.
+
+Database: JDBC and JPA (Part 7)
+JDBC. Chapter 24 covers the widely used JDBC and uses the Java DB database management system. The chapter introduces Structured Query Language (SQL) and features a
+case study on developing a JavaFX database-driven address book that demonstrates prepared statements. In JDK 9, Oracle no longer bundles Java DB, which is simply an Oracle-branded version of Apache Derby. JDK 9 users can download and use Apache Derby
+instead (https://db.apache.org/derby/).
+Java Persistence API. Chapter 29 covers the newer Java Persistence API (JPA)—a standard for object relational mapping (ORM) that uses JDBC “under the hood.” ORM tools
+can look at a database’s schema and generate a set of classes that enabled you to interact
+with a database without having to use JDBC and SQL directly. This speeds database-application development, reduces errors and produces more portable code.
+
+Web Application Development and Web Services (Part 8)
+Java Server Faces (JSF). Chapters 30–31 introduce the JavaServer™ Faces (JSF) technology for building JSF web-based applications. Chapter 30 includes examples on building
+web application GUIs, validating forms and session tracking. Chapter 31 discusses datadriven JSF applications—including a multi-tier web address book application that allows
+users to add and search for contacts.
+Web services. Chapter 32 now concentrates on creating and consuming REST-based web
+services. Most of today’s web services use REST, which is simpler and more flexible than older web-services technologies that often required manipulating data in XML format. REST
+can use a variety of formats, such as JSON, HTML, plain text, media files and XML.
+
+Optional Online Object-Oriented Design Case Study (Part 10)
+Developing an Object-Oriented Design and Java Implementation of an ATM. Chapters 33–
+34 include an optional case study on object-oriented design using the UML (Unified Modeling Language™)—the industry-standard graphical language for modeling object-oriented
+systems. We design and implement the software for a simple automated teller machine
+(ATM). We analyze a typical requirements document that specifies the system to be built.
+We determine the classes needed to implement that system, the attributes the classes need
+to have, the behaviors the classes need to exhibit and specify how the classes must interact
+with one another to meet the system requirements. From the design we produce a complete
+
+38
+
+Preface
+
+Java implementation. Students often report having a “light-bulb moment”—the case study
+helps them “tie it all together” and understand object orientation more deeply.
+
+Teaching Approach
+Java How to Program, 11/e, contains hundreds of complete working code examples. We
+stress program clarity and concentrate on building well-engineered software.
+Syntax Coloring. For readability, we syntax color all the Java code, similar to the way most
+Java integrated-development environments and code editors syntax color code. Our syntax-coloring conventions are as follows:
+comments appear in green
+keywords appear in dark blue
+errors appear in red
+constants and literal values appear in light blue
+all other code appears in black
+
+Code Highlighting. We place transparent yellow rectangles around key code segments.
+Using Fonts for Emphasis. We place the key terms and the index’s page reference for each
+defining occurrence in bold maroon text for easier reference. We emphasize on-screen
+components in the bold Helvetica font (e.g., the File menu) and emphasize Java program
+text in the Lucida font (for example, int x = 5;).
+Objectives. The list of chapter objectives provides a high-level overview of the chapter’s
+contents.
+Illustrations/Figures. Abundant tables, line drawings, UML diagrams, programs and program outputs are included.
+Summary Bullets. We present a section-by-section bullet-list summary of the chapter. For
+ease of reference, we generally include the page number of each key term’s defining occurrence in the text.
+Self-Review Exercises and Answers. Extensive self-review exercises and answers are included for self study. All of the exercises in the optional ATM case study are fully solved.
+Exercises. The chapter exercises include:
+•
+
+simple recall of important terminology and concepts
+
+•
+
+What’s wrong with this code?
+
+•
+
+What does this code do?
+
+•
+
+writing individual statements and small portions of methods and classes
+
+•
+
+writing complete methods, classes and programs
+
+•
+
+major projects
+
+•
+
+in many chapters, Making a Difference exercises that encourage you to use computers and the Internet to research and address significant social problems.
+
+•
+
+In this edition, we added new exercises to our game-programming set (SpotOn,
+Horse Race, Cannon, 15 Puzzle, Hangman, Block Breaker, Snake and Word
+Search), as well as others on the JavaMoney API, final instance variables, com-
+
+Programming Wisdom
+
+39
+
+bining composition and inheritance, working with interfaces, drawing fractals,
+recursively searching directories, visualizing sorting algorithms and implementing parallel recursive algorithms with the Fork/Join framework. Many of these require students to research additional Java features online and use them.
+Exercises that focus on either Java 8 or Java 9 are marked as such. Check out our Programming Projects Resource Center for lots of additional exercise and project possibilities
+(www.deitel.com/ProgrammingProjects/).
+Index. We’ve included an extensive index. Defining occurrences of key terms are highlighted with a bold maroon page number. The print book index mentions only those
+terms used in the print book. The online chapters index on the Companion Website includes all the print book terms and the online chapter terms.
+
+Programming Wisdom
+We include hundreds of programming tips to help you focus on important aspects of program development. These represent the best we’ve gleaned from a combined nine decades
+of programming and teaching experience.
+
+Good Programming Practices
+The Good Programming Practices call attention to techniques that will help you produce programs that are clearer, more understandable and more maintainable.
+
+Common Programming Errors
+Pointing out these Common Programming Errors reduces the likelihood that you’ll
+make them.
+
+Error-Prevention Tips
+These tips contain suggestions for exposing bugs and removing them from your programs;
+many describe aspects of Java that prevent bugs from getting into programs in the first
+place.
+
+Performance Tips
+These tips highlight opportunities for making your programs run faster or minimizing the
+amount of memory that they occupy.
+
+Portability Tips
+The Portability Tips help you write code that will run on a variety of platforms.
+
+Software Engineering Observations
+The Software Engineering Observations highlight architectural and design issues that
+affect the construction of software systems, especially large-scale systems.
+
+Look-and-Feel Observations
+The Look-and-Feel Observations highlight graphical-user-interface conventions. These
+observations help you design attractive, user-friendly graphical user interfaces that conform to industry norms.
+
+

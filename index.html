@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semicolon Africa — Java Practice Bank</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-red: #ff2e2e;
+            --brand-red-hover: #e02424;
+            --navy-slate: #38516d;
+            --light-gray-border: #e5e7eb;
+            --off-white-surface: #f8f8f8;
+            --white: #ffffff;
+            --black: #000000;
+            --body-text: #1f2937;
+            
+            --r-sm: 6px;
+            --r-md: 10px;
+            --r-lg: 18px;
+
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --surface-hover: #f8f8f8;
+            --text-main: #000000;
+            --text-heading: #38516d;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            line-height: 1.5;
+            transition: background 0.2s ease, color 0.2s ease;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 1. NAVIGATION BAR */
+        nav.navbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        @media (max-width: 768px) {
+            nav.navbar { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img { height: 36px; width: auto; object-fit: contain; }
+
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        .nav-link-item {
+            font-family: Arial, sans-serif;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--text-main);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.15s ease;
+        }
+
+        .nav-link-item:hover { color: var(--brand-red); }
+
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+        /* BUTTONS & ANIMATIONS */
+        .btn-filled-primary {
+            background-color: var(--brand-red);
+            color: var(--white);
+            border: 2px solid var(--brand-red);
+            border-radius: var(--r-md);
+            padding: 11px 22px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .btn-filled-primary:hover {
+            background-color: var(--brand-red-hover);
+            border-color: var(--brand-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 46, 46, 0.25);
+        }
+
+        .btn-outlined-secondary {
+            background-color: var(--surface);
+            color: var(--brand-red);
+            border: 2px solid var(--brand-red);
+            border-radius: var(--r-md);
+            padding: 11px 22px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .btn-outlined-secondary:hover {
+            background-color: var(--brand-red);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle-btn {
+            background: var(--off-white-surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 40px; height: 40px;
+            border-radius: var(--r-md);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover { transform: rotate(15deg); }
+
+        /* GAMIFICATION STATS DASHBOARD BAR */
+        .stats-dashboard-bar {
+            background: var(--off-white-surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            overflow-x: auto;
+        }
+
+        .stat-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 40px 5% 30px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+
+        .hero-title {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 600;
+            letter-spacing: -1px;
+            color: var(--text-heading);
+            line-height: 1.18;
+            margin-bottom: 14px;
+        }
+
+        .hero-title .accent-red { color: var(--brand-red); }
+
+        .hero-body {
+            font-size: 17px;
+            line-height: 26px;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        /* RED CONTENT CARD */
+        .red-content-card {
+            background-color: var(--brand-red);
+            color: var(--white);
+            border-radius: var(--r-md);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(255, 46, 46, 0.2);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .progress-bar-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill-white {
+            height: 100%;
+            background: #ffffff;
+            border-radius: 100px;
+            transition: width 0.5s ease-out;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 35px 5%;
+        }
+
+        .controls-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+            max-width: 400px;
+        }
+
+        .search-input-wrap input {
+            width: 100%;
+            padding: 11px 16px 11px 40px;
+            border: 2px solid var(--border);
+            border-radius: var(--r-md);
+            font-size: 15px;
+            background: var(--surface);
+            color: var(--text-main);
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input-wrap input:focus { outline: none; border-color: var(--brand-red); }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+        .view-switcher {
+            display: flex; gap: 4px;
+            background: var(--off-white-surface);
+            padding: 4px; border-radius: var(--r-md);
+            border: 1px solid var(--border);
+        }
+
+        .view-tab {
+            padding: 8px 16px;
+            border-radius: var(--r-sm);
+            border: none; background: transparent;
+            font-family: Arial, sans-serif; font-size: 14px; font-weight: 700;
+            color: var(--text-main); cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .view-tab.active { background: var(--brand-red); color: var(--white); }
+
+        /* ROADMAP GRID & LIST */
+        .chapter-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .chapter-card-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .chapter-card-item:hover {
+            border-color: var(--brand-red);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .exercise-list-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 820px) { .exercise-list-layout { grid-template-columns: 1fr; } }
+
+        .chapter-filter-sidebar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 18px;
+            height: fit-content;
+        }
+
+        .filter-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 12px; border-radius: var(--r-sm);
+            font-family: 'IBM Plex Sans', sans-serif; font-size: 14px;
+            cursor: pointer; margin-bottom: 2px;
+            transition: background 0.15s ease;
+        }
+
+        .filter-item:hover { background: var(--off-white-surface); }
+        .filter-item.active { background: var(--brand-red); color: var(--white); }
+
+        .ex-card-component {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .ex-card-component.locked { opacity: 0.7; border-style: dashed; }
+
+        .ex-card-header-bar {
+            padding: 16px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .ex-card-header-bar:hover { background: var(--off-white-surface); }
+
+        .diff-tag {
+            font-family: Arial, sans-serif; font-size: 11px; font-weight: 700;
+            padding: 3px 9px; border-radius: 100px; text-transform: uppercase;
+        }
+        .diff-tag.easy { background: #dcfce7; color: #16a34a; }
+        .diff-tag.medium { background: #fef3c7; color: #d97706; }
+        .diff-tag.hard { background: #fee2e2; color: #ff2e2e; }
+
+        .ex-card-body-content {
+            display: none;
+            padding: 0 20px 20px;
+            border-top: 1px solid var(--border);
+            animation: fadeIn 0.2s ease-in;
+        }
+
+        .ex-card-component.open .ex-card-body-content { display: block; }
+        .ex-card-component.open { border-color: var(--brand-red); }
+
+        pre.io-spec {
+            background: var(--off-white-surface);
+            border: 1px solid var(--border);
+            padding: 12px; border-radius: var(--r-sm);
+            font-family: 'JetBrains Mono', monospace; font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        pre.solution-box {
+            background: #0f172a; color: #38bdf8;
+            border: 1px solid #1e293b;
+            padding: 14px; border-radius: var(--r-sm);
+            font-family: 'JetBrains Mono', monospace; font-size: 13px;
+            margin-top: 10px; white-space: pre-wrap;
+        }
+
+        /* IDE MODAL WINDOW (LIGHT MODE) */
+        .modal-overlay-bg {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+            padding: 16px;
+        }
+
+        .modal-overlay-bg.active { opacity: 1; pointer-events: auto; }
+
+        .modal-window-box {
+            background: #ffffff;
+            border-radius: var(--r-lg);
+            width: 100%; max-width: 1100px; height: 88vh;
+            display: flex; flex-direction: column;
+            border: 1px solid #e2e8f0; color: #0f172a;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18);
+            transform: scale(0.96); transition: transform 0.25s ease;
+        }
+
+        .modal-overlay-bg.active .modal-window-box { transform: scale(1); }
+
+        .modal-top-bar {
+            background: #f8fafc; padding: 14px 22px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0; color: #0f172a;
+        }
+
+        .modal-grid-split {
+            display: grid; grid-template-columns: 1fr 1fr;
+            flex: 1; overflow: hidden;
+        }
+
+        @media (max-width: 768px) { .modal-grid-split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } }
+
+        .editor-pane-side { display: flex; flex-direction: column; background: #ffffff; border-right: 1px solid #e2e8f0; }
+        textarea.code-textarea { flex: 1; width: 100%; background: #ffffff; color: #0f172a; border: none; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.6; outline: none; resize: none; }
+
+        .terminal-pane-side { display: flex; flex-direction: column; background: #f8fafc; }
+        .console-output-box { flex: 1; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #15803d; overflow-y: auto; white-space: pre-wrap; background: #ffffff; margin: 8px 14px 14px; border: 1px solid #cbd5e1; border-radius: var(--r-sm); }
+        .console-output-box.error { color: #dc2626; background: #fef2f2; border-color: #fca5a5; }
+
+        .modal-bottom-bar {
+            background: #f8fafc; padding: 12px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-top: 1px solid #e2e8f0; flex-wrap: wrap; gap: 10px; color: #475569;
+        }
+
+        /* KEYBOARD SHORTCUT BADGES & TOAST */
+        .shortcut-badge {
+            background: #1e293b; border: 1px solid #334155; color: #94a3b8;
+            padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+        }
+
+        .toast-banner {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(30px);
+            background: var(--navy-slate); color: var(--white);
+            padding: 12px 24px; border-radius: var(--r-md); font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px; opacity: 0; pointer-events: none; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2000; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .toast-banner.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        footer.site-footer {
+            background: var(--off-white-surface); border-top: 1px solid var(--border);
+            padding: 30px 5%; display: flex; justify-content: space-between; align-items: center;
+            font-size: 14px; color: var(--text-main); flex-wrap: wrap; gap: 12px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSj7eB-r0oYVLOk-1sX0WakoJwZ1EqqDE59k3bwJCegQ&s=10" alt="Semicolon Africa Logo" class="logo-img">
+            <span style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 19px; color: var(--brand-red);">Practice Bank</span>
+            <span style="background:var(--brand-red); color:#fff; font-size:10px; font-weight:700; padding:2px 6px; border-radius:100px; font-family:'JetBrains Mono', monospace;">v2.0</span>
+        </a>
+
+        <div class="nav-links">
+            <a onclick="switchView('grid')" class="nav-link-item active" id="navModules">🚀 Practice Modules</a>
+            <a onclick="switchView('list')" class="nav-link-item" id="navList">📚 All Challenges</a>
+            <a onclick="openStatsModal()" class="nav-link-item">🏆 Stats & XP</a>
+            <a onclick="surpriseMe()" class="nav-link-item">⚡ Random Practice <span class="shortcut-badge">S</span></a>
+            <a onclick="openSettingsModal()" class="nav-link-item">⚙️ Settings & Backup</a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="btn-outlined-secondary" onclick="toggleLockMode()" id="lockBtn" style="padding:8px 14px; font-size:13.5px;">🔒 Lock: ON</button>
+        </div>
+    </nav>
+
+    <!-- GAMIFICATION STATS DASHBOARD BAR -->
+    <div class="stats-dashboard-bar">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="stat-chip" style="cursor:pointer;" onclick="openStatsModal()">🔥 Streak: <span id="streakDays" style="color:var(--brand-red);">3 Days</span></div>
+            <div class="stat-chip">🟢 Easy: <span id="easyCount">0</span></div>
+            <div class="stat-chip">🟡 Medium: <span id="medCount">0</span></div>
+            <div class="stat-chip">🔴 Hard: <span id="hardCount">0</span></div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="stat-chip" style="background:linear-gradient(135deg, var(--brand-red), #d90429); color:#ffffff; border:none; cursor:pointer;" onclick="openStatsModal()">⚡ <span id="userXp">0 XP</span></div>
+            <button class="btn-outlined-secondary" style="padding:6px 12px; font-size:12px;" onclick="openSettingsModal()">⚙️ Settings</button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-grid">
+            <div>
+                <h1 class="hero-title">Master <span class="accent-red">Java Programming</span> Concept by Concept</h1>
+                <p class="hero-body">Practice 750 curated problems organized across 25 core Java concepts — from basic syntax & logic to OOP, collections, streams, concurrency, design patterns & enterprise web APIs.</p>
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+                    <button class="btn-filled-primary" onclick="switchView('grid')">Explore 25 Modules</button>
+                    <button class="btn-outlined-secondary" onclick="surpriseMe()">⚡ Random Practice <span class="shortcut-badge">S</span></button>
+                </div>
+            </div>
+
+            <!-- RED CONTENT CARD -->
+            <div class="red-content-card">
+                <div>
+                    <div style="font-family: 'IBM Plex Sans', sans-serif; font-size: 21px; font-weight: 600; margin-bottom: 6px;">Track Your Mastery</div>
+                    <div style="font-size: 13.5px; opacity: 0.92; margin-bottom: 18px;">Complete exercises to earn XP, unlock achievements, and master Java architecture.</div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 6px; font-size: 13px;">
+                        <span>Course Progress</span>
+                        <span id="heroProgressPct">0%</span>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill-white" id="heroProgressFill" style="width: 0%;"></div>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 12px; opacity: 0.9;" id="heroProgressText">0 of 750 Exercises Done</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <!-- TOOLBAR -->
+        <div class="controls-toolbar">
+            <div class="search-input-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search 750 exercises (e.g. Streams, HashMap, Threads, Record)..." oninput="onSearch(this.value)">
+            </div>
+
+            <div class="view-switcher">
+                <button class="view-tab active" id="tabGrid" onclick="switchView('grid')">Concept Roadmap</button>
+                <button class="view-tab" id="tabList" onclick="switchView('list')">All Exercises List</button>
+            </div>
+        </div>
+
+        <!-- VIEW 1: CHAPTER ROADMAP GRID -->
+        <div id="gridContainer" class="chapter-cards-grid"></div>
+
+        <!-- VIEW 2: DETAILED EXERCISE LIST -->
+        <div id="listContainer" class="exercise-list-layout" style="display: none;">
+            <div class="chapter-filter-sidebar">
+                <div style="font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:14px; margin-bottom:10px;">Java Concepts (1-25)</div>
+                <div id="chapterFilters"></div>
+                <div style="font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:14px; margin-top:18px; margin-bottom:10px;">Difficulty</div>
+                <div id="diffFilters"></div>
+            </div>
+            <div id="exerciseCardsList"></div>
+        </div>
+    </main>
+
+    <!-- IDE CODE EDITOR MODAL WITH TIMER (LIGHT MODE) -->
+    <div class="modal-overlay-bg" id="editorModal">
+        <div class="modal-window-box">
+            <div class="modal-top-bar">
+                <span style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 15px; color: #0f172a;" id="modalTitle">💻 Java Sandbox</span>
+                <div style="display:flex; align-items:center; gap:14px;">
+                    <!-- TIMER DISPLAY -->
+                    <span style="background:#fef3c7; border:1px solid #fde68a; padding:4px 10px; border-radius:100px; font-family:'JetBrains Mono', monospace; font-size:12px; color:#b45309;" id="timerDisplay">⏱️ 00:00</span>
+                    <button style="background:none; border:none; color:#64748b; font-size:24px; cursor:pointer;" onclick="closeEditor()">&times;</button>
+                </div>
+            </div>
+            <div class="modal-grid-split">
+                <div class="editor-pane-side">
+                    <div style="background:#f8fafc; padding:10px 16px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:#475569; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                        <span>Main.java (Class Must Be 'Main')</span>
+                        <button style="background:none; border:none; color:var(--brand-red); font-weight:600; cursor:pointer; font-size:11.5px;" onclick="copyEditorCode()">📋 Copy Code <span class="shortcut-badge">C</span></button>
+                    </div>
+                    <textarea class="code-textarea" id="codeEditor" spellcheck="false"></textarea>
+                </div>
+                <div class="terminal-pane-side">
+                    <div style="background:#f8fafc; padding:10px 16px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:#475569; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between;">
+                        <span>Terminal Output</span>
+                        <span id="execStatus" style="color:#15803d; font-weight:600;">Ready</span>
+                    </div>
+                    <div style="padding:10px 14px; background:#ffffff; border-bottom:1px solid #e2e8f0;">
+                        <label style="font-size:11px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Scanner Input (stdin):</label>
+                        <textarea id="customInput" placeholder="Enter custom input lines here..." style="width:100%; height:40px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; color:#0f172a; font-family:'JetBrains Mono', monospace; font-size:12px; padding:6px; resize:none;"></textarea>
+                    </div>
+                    <div class="console-output-box" id="consoleOutput">Click 'Run Code' to compile and execute Java logic.</div>
+                </div>
+            </div>
+            <div class="modal-bottom-bar">
+                <span style="font-size: 12px; color: #64748b;">Shortcut: <b>Ctrl + Enter</b> to run | <b>Esc</b> to close</span>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-outlined-secondary" style="padding:6px 14px; font-size:12.5px; background:#ffffff; border-color:#cbd5e1; color:#475569;" onclick="resetCode()">Reset Code</button>
+                    <button class="btn-filled-primary" style="padding:6px 18px; font-size:12.5px;" id="runBtn" onclick="runCode()">▶ Run Code</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS & BACKUP MODAL (LIGHT MODE) -->
+    <div class="modal-overlay-bg" id="settingsModal">
+        <div class="modal-window-box" style="max-width:550px; height:auto;">
+            <div class="modal-top-bar">
+                <span style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 16px; color: #0f172a;">⚙️ Settings & Data Backup</span>
+                <button style="background:none; border:none; color:#64748b; font-size:24px; cursor:pointer;" onclick="closeSettingsModal()">&times;</button>
+            </div>
+            <div style="padding:24px; color:#0f172a; font-family:'IBM Plex Sans', sans-serif; display:flex; flex-direction:column; gap:20px;">
+                <div>
+                    <h4 style="font-size:14px; font-weight:700; margin-bottom:8px; color:var(--brand-red);">Data Management</h4>
+                    <p style="font-size:13px; color:#64748b; margin-bottom:12px;">Backup or restore your exercise progress JSON data file anytime.</p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn-outlined-secondary" style="font-size:13px; padding:8px 16px;" onclick="exportProgress(event)">💾 Export Backup (.json)</button>
+                        <button class="btn-outlined-secondary" style="font-size:13px; padding:8px 16px;" onclick="triggerImport()">📂 Import Backup (.json)</button>
+                        <input type="file" id="importFileInput" style="display:none" onchange="importProgress(event)" accept=".json">
+                    </div>
+                </div>
+
+                <hr style="border:none; border-top:1px solid #e2e8f0;">
+
+                <div>
+                    <h4 style="font-size:14px; font-weight:700; margin-bottom:8px; color:var(--brand-red);">Practice Experience</h4>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <div style="font-size:13.5px; font-weight:600; color:#0f172a;">Sequential Lock Mode</div>
+                            <div style="font-size:12px; color:#64748b;">Require solving exercise N-1 before exercise N unlocks.</div>
+                        </div>
+                        <button class="btn-outlined-secondary" onclick="toggleLockMode()" id="settingsLockBtn" style="padding:6px 12px; font-size:12.5px;">🔒 Lock: ON</button>
+                    </div>
+                </div>
+
+                <hr style="border:none; border-top:1px solid #e2e8f0;">
+
+                <div>
+                    <h4 style="font-size:14px; font-weight:700; margin-bottom:6px; color:#dc2626;">Danger Zone</h4>
+                    <p style="font-size:12.5px; color:#64748b; margin-bottom:10px;">Clear all local exercise progress, XP, and streak history.</p>
+                    <button class="btn-filled-primary" style="background:#dc2626; border-color:#dc2626; font-size:12.5px; padding:8px 16px;" onclick="resetProgress()">↺ Reset All Progress</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAMIFICATION STATS & BADGES MODAL (LIGHT MODE) -->
+    <div class="modal-overlay-bg" id="statsModal">
+        <div class="modal-window-box" style="max-width:650px; height:auto; max-height:85vh; overflow-y:auto;">
+            <div class="modal-top-bar">
+                <span style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 16px; color: #0f172a;">🏆 Developer Profile & Achievements</span>
+                <button style="background:none; border:none; color:#64748b; font-size:24px; cursor:pointer;" onclick="closeStatsModal()">&times;</button>
+            </div>
+            <div style="padding:24px; color:#0f172a; font-family:'IBM Plex Sans', sans-serif;">
+                <!-- USER LEVEL CARD -->
+                <div style="background:linear-gradient(135deg, #f8fafc, #f1f5f9); border:1px solid #e2e8f0; padding:20px; border-radius:12px; margin-bottom:20px; display:flex; align-items:center; gap:16px;">
+                    <div style="width:54px; height:54px; border-radius:100px; background:var(--brand-red); display:flex; align-items:center; justify-content:center; font-size:26px; color:#ffffff; box-shadow:0 4px 12px rgba(255,46,46,0.3);">
+                        ⚡
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:12px; font-weight:700; color:var(--brand-red); text-transform:uppercase; letter-spacing:0.5px;" id="userRankTitle">Java Apprentice</div>
+                        <div style="font-size:20px; font-weight:700; color:#0f172a;" id="profileXpText">0 XP Total</div>
+                        <div class="progress-bar-track" style="margin-top:8px; height:8px; background:#e2e8f0;">
+                            <div class="progress-bar-fill-white" id="rankProgressFill" style="width:0%; background:var(--brand-red);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="font-size:14px; font-weight:700; margin-bottom:12px; color:var(--brand-red);">Unlocked Badges</h4>
+                <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:12px; margin-bottom:20px;" id="badgesGrid">
+                    <!-- BADGES POPULATED VIA JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+        <div>Semicolon Africa &copy; 2026. Built with the official Semicolon Design System.</div>
+        <div>Comprehensive 750-Question Java Concept Practice Bank</div>
+    </footer>
+
+    <div class="toast-banner" id="toast"></div>
+
+    <script src="questions.js"></script>
+    <script>
+        let currentView = "grid";
+        let activeChapter = "All";
+        let activeDiff = "All";
+        let searchTerm = "";
+        let currentQuestionId = null;
+        let lockMode = true;
+        let timerInterval = null;
+        let secondsElapsed = 0;
+
+        let doneState = JSON.parse(localStorage.getItem("semicolon_progress") || "{}");
+
+
+
+        function switchView(v) {
+            currentView = v;
+            document.getElementById("tabGrid").classList.toggle("active", v === 'grid');
+            document.getElementById("tabList").classList.toggle("active", v === 'list');
+            document.getElementById("navModules").classList.toggle("active", v === 'grid');
+            document.getElementById("navList").classList.toggle("active", v === 'list');
+            document.getElementById("gridContainer").style.display = v === 'grid' ? 'grid' : 'none';
+            document.getElementById("listContainer").style.display = v === 'list' ? 'grid' : 'none';
+            if (v === 'grid') renderGrid(); else renderList();
+        }
+
+        function toggleLockMode() {
+            lockMode = !lockMode;
+            const btnText = lockMode ? "🔒 Lock: ON" : "🔓 Lock: OFF";
+            document.getElementById("lockBtn").textContent = btnText;
+            const settingsBtn = document.getElementById("settingsLockBtn");
+            if (settingsBtn) settingsBtn.textContent = btnText;
+            if (currentView === 'grid') renderGrid(); else renderList();
+            showToast(lockMode ? "Sequential Lock Enabled" : "Free Practice Enabled");
+        }
+
+        function isUnlocked(qIndex) {
+            if (!lockMode || qIndex === 0) return true;
+            return !!doneState[QUESTIONS[qIndex - 1].id];
+        }
+
+        function updateProgress() {
+            const done = Object.keys(doneState).filter(k => doneState[k]);
+            const doneCount = done.length;
+            const total = QUESTIONS.length;
+            const pct = Math.round((doneCount / total) * 100);
+            
+            document.getElementById("heroProgressPct").textContent = `${pct}%`;
+            document.getElementById("heroProgressFill").style.width = `${pct}%`;
+            document.getElementById("heroProgressText").textContent = `${doneCount} of ${total} Exercises Completed`;
+
+            // Calculate difficulty counts
+            let easy = 0, med = 0, hard = 0;
+            QUESTIONS.forEach(q => {
+                if (doneState[q.id]) {
+                    if (q.difficulty === 'easy') easy++;
+                    else if (q.difficulty === 'medium') med++;
+                    else if (q.difficulty === 'hard') hard++;
+                }
+            });
+
+            document.getElementById("easyCount").textContent = `${easy}/${QUESTIONS.filter(q=>q.difficulty==='easy').length}`;
+            document.getElementById("medCount").textContent = `${med}/${QUESTIONS.filter(q=>q.difficulty==='medium').length}`;
+            document.getElementById("hardCount").textContent = `${hard}/${QUESTIONS.filter(q=>q.difficulty==='hard').length}`;
+            const totalXp = (easy * 50) + (med * 100) + (hard * 150);
+            document.getElementById("userXp").textContent = `${totalXp} XP`;
+
+            // Update profile stats if elements exist
+            const pXp = document.getElementById("profileXpText");
+            if (pXp) pXp.textContent = `${totalXp} XP Total`;
+            
+            let rank = "Java Novice";
+            let rankPct = Math.min(100, Math.round((doneCount / 500) * 100));
+            if (doneCount >= 500) rank = "👑 Enterprise Master";
+            else if (doneCount >= 300) rank = "🥇 Design Architect";
+            else if (doneCount >= 150) rank = "🥈 Concurrency Ninja";
+            else if (doneCount >= 75) rank = "🥉 OOP Specialist";
+            else if (doneCount >= 25) rank = "⚡ Logic Knight";
+            else if (doneCount >= 5) rank = "🌱 Syntax Apprentice";
+
+            const rankEl = document.getElementById("userRankTitle");
+            if (rankEl) rankEl.textContent = rank;
+            const rankFill = document.getElementById("rankProgressFill");
+            if (rankFill) rankFill.style.width = `${rankPct}%`;
+        }
+
+        /* MODAL HANDLERS FOR SETTINGS & STATS */
+        function openSettingsModal() {
+            document.getElementById("settingsModal").classList.add("active");
+        }
+
+        function closeSettingsModal() {
+            document.getElementById("settingsModal").classList.remove("active");
+        }
+
+        function openStatsModal() {
+            renderBadges();
+            document.getElementById("statsModal").classList.add("active");
+        }
+
+        function closeStatsModal() {
+            document.getElementById("statsModal").classList.remove("active");
+        }
+
+        function renderBadges() {
+            const doneCount = Object.keys(doneState).filter(k => doneState[k]).length;
+            const badges = [
+                { icon: "🚀", title: "First Step", desc: "Complete your 1st Java exercise", req: 1 },
+                { icon: "🎯", title: "Decathlon", desc: "Complete 10 exercises", req: 10 },
+                { icon: "🥉", title: "Half Century", desc: "Complete 50 exercises", req: 50 },
+                { icon: "🥈", title: "Century Master", desc: "Complete 100 exercises", req: 100 },
+                { icon: "🥇", title: "Java Titan", desc: "Complete 300 exercises", req: 300 },
+                { icon: "👑", title: "Grandmaster", desc: "Complete 500 exercises", req: 500 }
+            ];
+
+            const grid = document.getElementById("badgesGrid");
+            if (!grid) return;
+
+            grid.innerHTML = badges.map(b => {
+                const unlocked = doneCount >= b.req;
+                return `
+                <div style="background:${unlocked ? '#fff5f5' : '#f8fafc'}; border:1px solid ${unlocked ? 'var(--brand-red)' : '#e2e8f0'}; border-radius:10px; padding:14px; text-align:center; opacity:${unlocked ? 1 : 0.65};">
+                    <div style="font-size:32px; margin-bottom:6px;">${b.icon}</div>
+                    <div style="font-weight:700; font-size:13.5px; color:${unlocked ? '#0f172a' : '#64748b'}; margin-bottom:4px;">${b.title}</div>
+                    <div style="font-size:11px; color:#64748b;">${b.desc}</div>
+                    <div style="margin-top:8px; font-size:10.5px; font-weight:700; color:${unlocked ? '#15803d' : '#b45309'};">
+                        ${unlocked ? '✓ UNLOCKED' : `${doneCount}/${b.req}`}
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function renderGrid() {
+            const gridEl = document.getElementById("gridContainer");
+            gridEl.innerHTML = CHAPTERS.map(ch => {
+                const chQuestions = QUESTIONS.filter(q => q.chapter === ch.id);
+                const doneCount = chQuestions.filter(q => doneState[q.id]).length;
+                const pct = Math.round((doneCount / chQuestions.length) * 100);
+
+                return `
+                <div class="chapter-card-item">
+                    <div>
+                        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:600; color:var(--brand-red); text-transform:uppercase; margin-bottom:4px;">Concept ${ch.id}</div>
+                        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:18px; font-weight:600; color:var(--text-heading); margin-bottom:8px;">${ch.name}</div>
+                        <div style="font-size:13.5px; opacity:0.8; margin-bottom:16px;">Master ${ch.name} with hands-on Java exercises.</div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:6px;">
+                            <span>Progress</span>
+                            <span>${doneCount}/${chQuestions.length} (${pct}%)</span>
+                        </div>
+                        <div class="progress-bar-track" style="height:7px; background:var(--border);">
+                            <div class="progress-bar-fill-white" style="width:${pct}%; background:var(--brand-red);"></div>
+                        </div>
+                        <button class="btn-filled-primary" style="margin-top:14px; width:100%; font-size:13px; padding:8px;" onclick="openChapterList(${ch.id})">Practice Concept ${ch.id} →</button>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function openChapterList(chId) {
+            activeChapter = chId;
+            switchView('list');
+            renderFilters();
+            renderList();
+        }
+
+        function renderFilters() {
+            const chEl = document.getElementById("chapterFilters");
+            let html = `<div class="filter-item ${activeChapter === 'All' ? 'active' : ''}" onclick="setChapter('All')">All Concepts<span>${QUESTIONS.length}</span></div>`;
+            CHAPTERS.forEach(ch => {
+                const count = QUESTIONS.filter(q => q.chapter === ch.id).length;
+                html += `<div class="filter-item ${activeChapter === ch.id ? 'active' : ''}" onclick="setChapter(${ch.id})">Concept ${ch.id}<span>${count}</span></div>`;
+            });
+            chEl.innerHTML = html;
+
+            const diffEl = document.getElementById("diffFilters");
+            const diffs = ["All", "easy", "medium", "hard"];
+            diffEl.innerHTML = diffs.map(d => {
+                const count = d === "All" ? QUESTIONS.length : QUESTIONS.filter(q => q.difficulty === d).length;
+                return `<div class="filter-item ${activeDiff === d ? 'active' : ''}" onclick="setDiff('${d}')">${d.toUpperCase()}<span>${count}</span></div>`;
+            }).join("");
+        }
+
+        function setChapter(c) { activeChapter = c; renderFilters(); renderList(); }
+        function setDiff(d) { activeDiff = d; renderFilters(); renderList(); }
+        function onSearch(v) { searchTerm = v.trim().toLowerCase(); if (currentView === 'grid') renderGrid(); else renderList(); }
+
+        function renderList() {
+            const filtered = QUESTIONS.filter(q =>
+                (activeChapter === "All" || q.chapter === activeChapter) &&
+                (activeDiff === "All" || q.difficulty === activeDiff) &&
+                (q.title + " " + q.prompt.join(" ") + " concept" + q.chapter + " " + q.id).toLowerCase().includes(searchTerm)
+            );
+
+            const listEl = document.getElementById("exerciseCardsList");
+            if (!filtered.length) {
+                listEl.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-main);">No exercises match your search criteria.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = filtered.map(q => {
+                const qIndex = QUESTIONS.findIndex(x => x.id === q.id);
+                const unlocked = isUnlocked(qIndex);
+                const isDone = !!doneState[q.id];
+
+                return `
+                <div class="ex-card-component ${!unlocked ? 'locked' : ''}" id="card-${q.id}">
+                    <div class="ex-card-header-bar" onclick="toggleCard('${q.id}', ${unlocked})">
+                        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:16px; font-weight:600; color:var(--text-heading); display:flex; align-items:center; gap:10px;">
+                            <span style="font-size:11.5px; font-weight:700; color:var(--brand-red);">Concept ${q.chapter}</span>
+                            <span>${!unlocked ? '🔒 ' : ''}${q.title}</span>
+                        </div>
+                        <span class="diff-tag ${q.difficulty}">${q.difficulty}</span>
+                    </div>
+                    <div class="ex-card-body-content">
+                        <h4 style="font-size:12.5px; margin:14px 0 4px;">Exercise Prompt</h4>
+                        ${q.prompt.map(p => `<p style="font-size:14.5px; margin-bottom:6px;">${p}</p>`).join("")}
+                        <h4 style="font-size:12.5px; margin:12px 0 4px;">Specifications / Sample Output</h4>
+                        <pre class="io-spec">${q.io}</pre>
+                        
+                        <div style="display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;">
+                            <button class="btn-filled-primary" style="padding:8px 16px; font-size:13px;" onclick="openEditor('${q.id}', event)">💻 Write & Run Code</button>
+                            <button class="btn-outlined-secondary" style="padding:8px 14px; font-size:13px; border-color:var(--border); color:var(--text-main);" onclick="shareQuestion('${q.id}', event)">🔗 Share Link</button>
+                        </div>
+
+                        <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border); display:flex; align-items:center; gap:10px;">
+                            <input type="checkbox" id="chk-${q.id}" ${isDone ? 'checked' : ''} onclick="toggleDone('${q.id}', event)" style="width:16px; height:16px; accent-color:var(--brand-red);">
+                            <label for="chk-${q.id}" style="font-weight:600; cursor:pointer; font-size:13.5px;">Mark as completed</label>
+                        </div>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function escapeHtml(str) {
+            return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function toggleCard(id, unlocked) {
+            if (!unlocked) { showToast("🔒 Complete previous exercise to unlock!"); return; }
+            document.getElementById("card-" + id).classList.toggle("open");
+        }
+
+        function shareQuestion(id, ev) {
+            if (ev) ev.stopPropagation();
+            const shareUrl = `${window.location.origin}${window.location.pathname}?id=${id}`;
+            navigator.clipboard.writeText(shareUrl);
+            showToast("🔗 Question link copied to clipboard!");
+        }
+
+        function toggleDone(id, ev) {
+            ev.stopPropagation();
+            const wasDone = !!doneState[id];
+            doneState[id] = !wasDone;
+            localStorage.setItem("semicolon_progress", JSON.stringify(doneState));
+            updateProgress();
+            renderList();
+            if (!wasDone) showToast("🎉 Exercise Completed! Next problem unlocked.");
+        }
+
+        function resetProgress() {
+            if (confirm("Reset all completion progress?")) {
+                localStorage.removeItem("semicolon_progress");
+                Object.keys(doneState).forEach(k => delete doneState[k]);
+                updateProgress();
+                if (currentView === 'grid') renderGrid(); else renderList();
+                showToast("Progress reset successfully");
+            }
+        }
+
+        function exportProgress(e) {
+            if (e) e.preventDefault();
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(doneState, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `semicolon_java_progress_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("💾 Progress exported successfully!");
+        }
+
+        function triggerImport() { document.getElementById("importFileInput").click(); }
+
+        function importProgress(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    doneState = imported;
+                    localStorage.setItem("semicolon_progress", JSON.stringify(doneState));
+                    updateProgress();
+                    if (currentView === 'grid') renderGrid(); else renderList();
+                    showToast("📂 Progress imported successfully!");
+                } catch(err) {
+                    showToast("Failed to parse progress JSON file");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function copyEditorCode() {
+            const code = document.getElementById("codeEditor").value;
+            navigator.clipboard.writeText(code);
+            showToast("📋 Code copied to clipboard!");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toast");
+            t.textContent = msg;
+            t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 2400);
+        }
+
+        /* TIMER LOGIC */
+        function startTimer() {
+            clearInterval(timerInterval);
+            secondsElapsed = 0;
+            const disp = document.getElementById("timerDisplay");
+            disp.textContent = "⏱️ 00:00";
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                const secs = String(secondsElapsed % 60).padStart(2, '0');
+                disp.textContent = `⏱️ ${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function stopTimer() { clearInterval(timerInterval); }
+
+        function openEditor(id, ev) {
+            if (ev) ev.stopPropagation();
+            const q = QUESTIONS.find(x => x.id === id);
+            if (!q) return;
+            currentQuestionId = id;
+            document.getElementById("modalTitle").textContent = `💻 Java Sandbox — ${q.title}`;
+            document.getElementById("codeEditor").value = q.starterCode;
+            document.getElementById("consoleOutput").className = "console-output-box";
+            document.getElementById("consoleOutput").textContent = "Click 'Run Code' or press Ctrl + Enter to compile & run Java.";
+            document.getElementById("customInput").value = "";
+            document.getElementById("execStatus").textContent = "Ready";
+            document.getElementById("execStatus").style.color = "#15803d";
+            document.getElementById("editorModal").classList.add("active");
+            startTimer();
+        }
+
+        function closeEditor() {
+            document.getElementById("editorModal").classList.remove("active");
+            stopTimer();
+        }
+
+        function resetCode() {
+            const q = QUESTIONS.find(x => x.id === currentQuestionId);
+            if (q) document.getElementById("codeEditor").value = q.starterCode;
+        }
+
+        async function runCode() {
+            const code = document.getElementById("codeEditor").value;
+            const input = document.getElementById("customInput").value;
+            const outputBox = document.getElementById("consoleOutput");
+            const runBtn = document.getElementById("runBtn");
+            const execStatus = document.getElementById("execStatus");
+
+            outputBox.className = "console-output-box";
+            outputBox.textContent = "Compiling & executing Java code...";
+            execStatus.textContent = "Compiling...";
+            execStatus.style.color = "#facc15";
+            runBtn.disabled = true;
+
+            try {
+                const res = await fetch("/api/run", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code, input })
+                });
+
+                const rawText = await res.text();
+                let data;
+                try {
+                    data = JSON.parse(rawText);
+                } catch (jsonErr) {
+                    data = { success: false, output: "Server Error: Unexpected response format from server.\nRaw response: " + rawText };
+                }
+
+                if (data.success) {
+                    outputBox.className = "console-output-box";
+                    outputBox.textContent = data.output;
+                    const timeStr = data.execTimeMs ? ` (${data.execTimeMs}ms)` : '';
+                    execStatus.textContent = `Success${timeStr}`;
+                    execStatus.style.color = "#4ade80";
+
+                    if (currentQuestionId && !doneState[currentQuestionId]) {
+                        doneState[currentQuestionId] = true;
+                        localStorage.setItem("semicolon_progress", JSON.stringify(doneState));
+                        updateProgress();
+                        if (currentView === 'list') renderList(); else renderGrid();
+                        showToast("🎉 Execution Success! Exercise Marked Completed & Unlocked!");
+                    }
+                } else {
+                    outputBox.className = "console-output-box error";
+                    outputBox.textContent = data.output || "Compilation Error";
+                    execStatus.textContent = "Compilation Error";
+                    execStatus.style.color = "#f87171";
+                }
+            } catch (err) {
+                outputBox.className = "console-output-box error";
+                outputBox.textContent = "Server Error: " + err.message;
+                execStatus.textContent = "Server Error";
+                execStatus.style.color = "#f87171";
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        // GLOBAL KEYBOARD SHORTCUTS
+        document.addEventListener("keydown", (e) => {
+            if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+                if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                    if (document.getElementById("editorModal").classList.contains("active")) {
+                        e.preventDefault();
+                        runCode();
+                    }
+                }
+                return;
+            }
+
+            if (e.key === "Escape") {
+                closeEditor();
+                closeSettingsModal();
+                closeStatsModal();
+            } else if (e.key.toLowerCase() === "s") {
+                e.preventDefault();
+                surpriseMe();
+            } else if (e.key.toLowerCase() === "c") {
+                if (document.getElementById("editorModal").classList.contains("active")) {
+                    e.preventDefault();
+                    copyEditorCode();
+                }
+            }
+        });
+
+        function surpriseMe() {
+            const available = QUESTIONS.filter((q, idx) => isUnlocked(idx) && !doneState[q.id]);
+            const source = available.length ? available : QUESTIONS;
+            const pick = source[Math.floor(Math.random() * source.length)];
+            openEditor(pick.id);
+        }
+
+        // DEEP LINKING URL PARSER (?id=ch2-05 or ?q=ch2-05)
+        function checkUrlDeepLink() {
+            const params = new URLSearchParams(window.location.search);
+            const qId = params.get('id') || params.get('q');
+            if (qId) {
+                const targetQ = QUESTIONS.find(q => q.id === qId);
+                if (targetQ) {
+                    switchView('list');
+                    activeChapter = targetQ.chapter;
+                    renderFilters();
+                    renderList();
+                    setTimeout(() => {
+                        const card = document.getElementById("card-" + targetQ.id);
+                        if (card) {
+                            card.classList.add("open");
+                            card.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        openEditor(targetQ.id);
+                    }, 200);
+                }
+            }
+        }
+
+        updateProgress();
+        renderGrid();
+        renderFilters();
+        checkUrlDeepLink();
+    </script>
+</body>
+
+</html>

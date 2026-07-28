@@ -1,0 +1,1990 @@
+Senior Vice President Courseware Portfolio Management: Marcia J. Horton
+Director, Portfolio Management: Engineering, Computer Science & Global Editions: Julian Partridge
+Higher Ed Portfolio Management: Tracy Johnson (Dunkelberger)
+Portfolio Management Assistant: Kristy Alaura
+Acquisitions Editor, Global Edition: Aditee Agarwal
+Managing Content Producer: Scott Disanno
+Content Producer: Robert Engelhardt
+Project Editor, Global Edition: K.K. Neelakantan
+Web Developer: Steve Wright
+Rights and Permissions Manager: Ben Ferrini
+Manufacturing Buyer, Higher Ed, Lake Side Communications Inc (LSC): Maura Zaldivar-Garcia
+Senior Manufacturing Controller, Global Edition: Trudy Kimber
+Media Production Manager, Global Edition: Vikram Kumar
+Inventory Manager: Ann Lam
+Product Marketing Manager: Yvonne Vannatta
+Field Marketing Manager: Demetrius Hall
+Marketing Assistant: Jon Bryant
+Cover Designer: Lumina Datamatics
+Cover Art: ©MchlSkhrv/Shutterstock
+Credits and acknowledgments borrowed from other sources and reproduced, with permission, in this textbook appear
+on page 6. Java™ and Netbeans™ screenshots ©2017 by Oracle Corporation, all rights reserved. Reprinted with
+permission.
+The authors and publisher of this book have used their best efforts in preparing this book. These efforts include the
+development, research, and testing of the theories and programs to determine their effectiveness. The authors and publisher make no warranty of any kind, expressed or implied, with regard to these programs or to the documentation
+contained in this book. The authors and publisher shall not be liable in any event for incidental or consequential damages in connection with, or arising out of, the furnishing, performance, or use of these programs.
+Pearson Education Limited
+KAO Two
+KAO Park
+Harlow
+CM17 9NA
+United Kingdom
+and Associated Companies throughout the world
+Visit us on the World Wide Web at:
+www.pearsonglobaleditions.com
+© Pearson Education Limited 2018
+The rights of Paul Deitel and Harvey Deitel to be identified as the authors of this work have been asserted by them in
+accordance with the Copyright, Designs and Patents Act 1988.
+Authorized adaptation from the United States edition, entitled Java How to Program,Early Objects, 11th Edition,
+ISBN 978-0-13-474335-6 by Paul Deitel and Harvey Deitel published by Pearson Education © 2018.
+All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any
+form or by any means, electronic, mechanical, photocopying, recording or otherwise, without either the prior written
+permission of the publisher or a license permitting restricted copying in the United Kingdom issued by the Copyright
+Licensing Agency Ltd, Saffron House, 6–10 Kirby Street, London EC1N 8TS.
+All trademarks used herein are the property of their respective owners. The use of any trademark in this text does not
+vest in the author or publisher any trademark ownership rights in such trademarks, nor does the use of such trademarks
+imply any affiliation with or endorsement of this book by such owners.
+British Library Cataloguing-in-Publication Data
+A catalogue record for this book is available from the British Library
+10 9 8 7 6 5 4 3 2 1
+ISBN 10: 1-292-22385-5
+ISBN 13: 978-1-292-22385-8
+
+Typeset by GEX Publishing Services
+Printed and bound in Malaysia
+
+In memory of Dr. Henry Heimlich:
+Barbara Deitel used your Heimlich maneuver to
+save Abbey Deitel’s life. Our family is forever
+grateful to you.
+Harvey, Barbara, Paul and Abbey Deitel
+
+Trademarks
+DEITEL and the double-thumbs-up bug are registered trademarks of Deitel and Associates, Inc.
+Oracle and Java are registered trademarks of Oracle and/or its affiliates. Other names may be trademarks
+of their respective owners.
+Microsoft and/or its respective suppliers make no representations about the suitability of the information
+contained in the documents and related graphics published as part of the services for any purpose. All
+such documents and related graphics are provided “as is” without warranty of any kind. Microsoft and/
+or its respective suppliers hereby disclaim all warranties and conditions with regard to this information,
+including all warranties and conditions of merchantability, whether express, implied or statutory, fitness
+for a particular purpose, title and non-infringement. In no event shall Microsoft and/or its respective suppliers be liable for any special, indirect or consequential damages or any damages whatsoever resulting
+from loss of use, data or profits, whether in an action of contract, negligence or other tortious action,
+arising out of or in connection with the use or performance of information available from the services.
+The documents and related graphics contained herein could include technical inaccuracies or typographical errors. Changes are periodically added to the information herein. Microsoft and/or its respective suppliers may make improvements and/or changes in the product(s) and/or the program(s) described herein
+at any time. Partial screen shots may be viewed in full within the software version specified.
+Microsoft® and Windows® are registered trademarks of the Microsoft Corporation in the U.S.A. and
+other countries. Screen shots and icons reprinted with permission from the Microsoft Corporation. This
+book is not sponsored or endorsed by or affiliated with the Microsoft Corporation.
+UNIX is a registered trademark of The Open Group.
+Apache is a trademark of The Apache Software Foundation.
+CSS and XML are registered trademarks of the World Wide Web Consortium.
+Firefox is a registered trademark of the Mozilla Foundation.
+Google is a trademark of Google, Inc.
+Mac and macOS are trademarks of Apple Inc., registered in the U.S. and other countries.
+Linux is a registered trademark of Linus Torvalds. All trademarks are property of their respective owners.
+Throughout this book, trademarks are used. Rather than put a trademark symbol in every occurrence of
+a trademarked name, we state that we are using the names in an editorial fashion only and to the benefit
+of the trademark owner, with no intention of infringement of the trademark.
+
+Contents
+The online chapters and appendices listed at the end of this Table of Contents are located
+on the book’s Companion Website (http://www.pearsonglobaleditions.com/deitel)—
+see the inside front cover of your book for details.
+
+Foreword
+
+25
+
+Preface
+
+27
+
+Before You Begin
+
+47
+
+1
+
+Introduction to Computers, the Internet and Java 53
+
+1.1
+1.2
+
+Introduction
+Hardware and Software
+1.2.1 Moore’s Law
+1.2.2 Computer Organization
+Data Hierarchy
+Machine Languages, Assembly Languages and High-Level Languages
+Introduction to Object Technology
+1.5.1 Automobile as an Object
+1.5.2 Methods and Classes
+1.5.3 Instantiation
+1.5.4 Reuse
+1.5.5 Messages and Methopd Calls
+1.5.6 Attributes and Instance Variables
+1.5.7 Encapsulation and Information Hiding
+1.5.8 Inheritance
+1.5.9 Interfaces
+1.5.10 Object-Oriented Analysis and Design (OOAD)
+1.5.11 The UML (Unified Modeling Language)
+Operating Systems
+1.6.1 Windows—A Proprietary Operating System
+1.6.2 Linux—An Open-Source Operating System
+1.6.3 Apple’s macOS and Apple’s iOS for iPhone®, iPad®
+and iPod Touch® Devices
+1.6.4 Google’s Android
+
+1.3
+1.4
+1.5
+
+1.6
+
+54
+56
+56
+57
+59
+61
+62
+63
+63
+63
+63
+64
+64
+64
+64
+65
+65
+65
+66
+66
+66
+67
+67
+
+8
+
+Contents
+
+1.7
+1.8
+1.9
+1.10
+1.11
+
+Programming Languages
+Java
+A Typical Java Development Environment
+Test-Driving a Java Application
+Internet and World Wide Web
+1.11.1 Internet: A Network of Networks
+1.11.2 World Wide Web: Making the Internet User-Friendly
+1.11.3 Web Services and Mashups
+1.11.4 Internet of Things
+Software Technologies
+Getting Your Questions Answered
+
+68
+70
+71
+74
+78
+79
+79
+79
+80
+81
+83
+
+2
+
+Introduction to Java Applications;
+Input/Output and Operators
+
+87
+
+2.1
+2.2
+
+Introduction
+Your First Program in Java: Printing a Line of Text
+2.2.1 Compiling the Application
+2.2.2 Executing the Application
+Modifying Your First Java Program
+Displaying Text with printf
+Another Application: Adding Integers
+2.5.1 import Declarations
+2.5.2 Declaring and Creating a Scanner to Obtain User Input from
+the Keyboard
+2.5.3 Prompting the User for Input
+2.5.4 Declaring a Variable to Store an Integer and Obtaining an
+Integer from the Keyboard
+2.5.5 Obtaining a Second Integer
+2.5.6 Using Variables in a Calculation
+2.5.7 Displaying the Calculation Result
+2.5.8 Java API Documentation
+2.5.9 Declaring and Initializing Variables in Separate Statements
+Memory Concepts
+Arithmetic
+Decision Making: Equality and Relational Operators
+Wrap-Up
+
+1.12
+1.13
+
+2.3
+2.4
+2.5
+
+2.6
+2.7
+2.8
+2.9
+
+3
+3.1
+3.2
+
+Introduction to Classes, Objects, Methods
+and Strings
+Introduction
+Instance Variables, set Methods and get Methods
+3.2.1 Account Class with an Instance Variable, and set and get Methods
+3.2.2 AccountTest Class That Creates and Uses an Object of
+Class Account
+
+88
+88
+92
+93
+94
+96
+97
+98
+98
+99
+99
+100
+100
+100
+101
+101
+101
+102
+106
+109
+
+120
+121
+122
+122
+125
+
+Contents
+
+9
+
+Compiling and Executing an App with Multiple Classes
+Account UML Class Diagram
+Additional Notes on Class AccountTest
+Software Engineering with private Instance Variables and
+public set and get Methods
+Account Class: Initializing Objects with Constructors
+3.3.1 Declaring an Account Constructor for Custom Object Initialization
+3.3.2 Class AccountTest: Initializing Account Objects When
+They’re Created
+Account Class with a Balance; Floating-Point Numbers
+3.4.1 Account Class with a balance Instance Variable of Type double
+3.4.2 AccountTest Class to Use Class Account
+Primitive Types vs. Reference Types
+(Optional) GUI and Graphics Case Study: A Simple GUI
+3.6.1 What Is a Graphical User Interface?
+3.6.2 JavaFX Scene Builder and FXML
+3.6.3 Welcome App—Displaying Text and an Image
+3.6.4 Opening Scene Builder and Creating the File Welcome.fxml
+3.6.5 Adding an Image to the Folder Containing Welcome.fxml
+3.6.6 Creating a VBox Layout Container
+3.6.7 Configuring the VBox
+3.6.8 Adding and Configuring a Label
+3.6.9 Adding and Configuring an ImageView
+3.6.10 Previewing the Welcome GUI
+Wrap-Up
+
+128
+128
+130
+
+3.2.3
+3.2.4
+3.2.5
+3.2.6
+3.3
+
+3.4
+3.5
+3.6
+
+3.7
+
+4
+4.1
+4.2
+4.3
+4.4
+
+4.5
+4.6
+
+4.7
+4.8
+4.9
+
+Control Statements: Part 1; Assignment, ++
+and -- Operators
+Introduction
+Algorithms
+Pseudocode
+Control Structures
+4.4.1 Sequence Structure in Java
+4.4.2 Selection Statements in Java
+4.4.3 Iteration Statements in Java
+4.4.4 Summary of Control Statements in Java
+if Single-Selection Statement
+if…else Double-Selection Statement
+4.6.1 Nested if…else Statements
+4.6.2 Dangling-else Problem
+4.6.3 Blocks
+4.6.4 Conditional Operator (?:)
+Student Class: Nested if…else Statements
+while Iteration Statement
+Formulating Algorithms: Counter-Controlled Iteration
+
+130
+131
+132
+133
+134
+135
+137
+140
+140
+142
+142
+142
+142
+144
+144
+144
+144
+146
+147
+148
+
+156
+157
+157
+158
+158
+159
+160
+160
+160
+161
+162
+163
+164
+164
+165
+165
+168
+170
+
+10
+
+Contents
+
+4.10
+4.11
+4.12
+4.13
+4.14
+4.15
+
+4.16
+
+Formulating Algorithms: Sentinel-Controlled Iteration
+Formulating Algorithms: Nested Control Statements
+Compound Assignment Operators
+Increment and Decrement Operators
+Primitive Types
+(Optional) GUI and Graphics Case Study: Event Handling;
+Drawing Lines
+4.15.1 Test-Driving the Completed Draw Lines App
+4.15.2 Building the App’s GUI
+4.15.3 Preparing to Interact with the GUI Programmatically
+4.15.4 Class DrawLinesController
+4.15.5 Class DrawLines—The Main Application Class
+Wrap-Up
+
+5
+
+Control Statements: Part 2; Logical Operators
+
+216
+
+5.1
+5.2
+5.3
+5.4
+
+217
+217
+218
+222
+223
+224
+227
+228
+234
+237
+237
+238
+239
+239
+240
+241
+
+5.10
+5.11
+5.12
+
+Introduction
+Essentials of Counter-Controlled Iteration
+for Iteration Statement
+Examples Using the for Statement
+5.4.1 Application: Summing the Even Integers from 2 to 20
+5.4.2 Application: Compound-Interest Calculations
+do…while Iteration Statement
+switch Multiple-Selection Statement
+Class AutoPolicy Case Study: Strings in switch Statements
+break and continue Statements
+5.8.1 break Statement
+5.8.2 continue Statement
+Logical Operators
+5.9.1 Conditional AND (&&) Operator
+5.9.2 Conditional OR (||) Operator
+5.9.3 Short-Circuit Evaluation of Complex Conditions
+5.9.4 Boolean Logical AND (&) and Boolean Logical Inclusive OR (|)
+Operators
+5.9.5 Boolean Logical Exclusive OR (^)
+5.9.6 Logical Negation (!) Operator
+5.9.7 Logical Operators Example
+Structured-Programming Summary
+(Optional) GUI and Graphics Case Study: Drawing Rectangles and Ovals
+Wrap-Up
+
+6
+
+Methods: A Deeper Look
+
+6.1
+6.2
+6.3
+
+Introduction
+Program Units in Java
+static Methods, static Fields and Class Math
+
+5.5
+5.6
+5.7
+5.8
+5.9
+
+174
+181
+185
+186
+189
+190
+190
+191
+195
+197
+199
+201
+
+241
+242
+242
+243
+245
+250
+253
+
+264
+265
+265
+267
+
+Contents
+6.4
+6.5
+6.6
+
+6.13
+6.14
+
+Methods with Multiple Parameters
+Notes on Declaring and Using Methods
+Method-Call Stack and Activation Records
+6.6.1 Method-Call Stack
+6.6.2 Stack Frames
+6.6.3 Local Variables and Stack Frames
+6.6.4 Stack Overflow
+Argument Promotion and Casting
+Java API Packages
+Case Study: Secure Random-Number Generation
+Case Study: A Game of Chance; Introducing enum Types
+Scope of Declarations
+Method Overloading
+6.12.1 Declaring Overloaded Methods
+6.12.2 Distinguishing Between Overloaded Methods
+6.12.3 Return Types of Overloaded Methods
+(Optional) GUI and Graphics Case Study: Colors and Filled Shapes
+Wrap-Up
+
+7
+
+Arrays and ArrayLists
+
+7.1
+7.2
+7.3
+7.4
+
+Introduction
+Arrays
+Declaring and Creating Arrays
+Examples Using Arrays
+7.4.1 Creating and Initializing an Array
+7.4.2 Using an Array Initializer
+7.4.3 Calculating the Values to Store in an Array
+7.4.4 Summing the Elements of an Array
+7.4.5 Using Bar Charts to Display Array Data Graphically
+7.4.6 Using the Elements of an Array as Counters
+7.4.7 Using Arrays to Analyze Survey Results
+Exception Handling: Processing the Incorrect Response
+7.5.1 The try Statement
+7.5.2 Executing the catch Block
+7.5.3 toString Method of the Exception Parameter
+Case Study: Card Shuffling and Dealing Simulation
+Enhanced for Statement
+Passing Arrays to Methods
+Pass-By-Value vs. Pass-By-Reference
+Case Study: Class GradeBook Using an Array to Store Grades
+Multidimensional Arrays
+7.11.1 Arrays of One-Dimensional Arrays
+7.11.2 Two-Dimensional Arrays with Rows of Different Lengths
+7.11.3 Creating Two-Dimensional Arrays with Array-Creation
+Expressions
+
+6.7
+6.8
+6.9
+6.10
+6.11
+6.12
+
+7.5
+
+7.6
+7.7
+7.8
+7.9
+7.10
+7.11
+
+11
+269
+273
+274
+274
+274
+274
+275
+275
+276
+278
+283
+288
+290
+290
+291
+292
+292
+295
+
+309
+310
+311
+312
+314
+314
+315
+316
+317
+317
+319
+320
+322
+322
+322
+323
+323
+328
+329
+331
+332
+337
+338
+338
+339
+
+12
+
+Contents
+
+7.12
+7.13
+7.14
+7.15
+7.16
+7.17
+7.18
+
+7.11.4 Two-Dimensional Array Example: Displaying Element Values
+7.11.5 Common Multidimensional-Array Manipulations Performed
+with for Statements
+Case Study: Class GradeBook Using a Two-Dimensional Array
+Variable-Length Argument Lists
+Using Command-Line Arguments
+Class Arrays
+Introduction to Collections and Class ArrayList
+(Optional) GUI and Graphics Case Study: Drawing Arcs
+Wrap-Up
+
+8
+
+Classes and Objects: A Deeper Look
+
+8.1
+8.2
+8.3
+8.4
+8.5
+8.6
+8.7
+8.8
+8.9
+8.10
+8.11
+8.12
+8.13
+8.14
+8.15
+8.16
+8.17
+
+Controlling Access to Members
+Referring to the Current Object’s Members with the this Reference
+Time Class Case Study: Overloaded Constructors
+Default and No-Argument Constructors
+Notes on Set and Get Methods
+Composition
+enum Types
+Garbage Collection
+static Class Members
+static Import
+final Instance Variables
+Package Access
+Using BigDecimal for Precise Monetary Calculations
+(Optional) GUI and Graphics Case Study: Using Objects with Graphics
+Wrap-Up
+
+9
+
+Object-Oriented Programming: Inheritance
+
+9.1
+9.2
+9.3
+9.4
+
+Introduction
+Superclasses and Subclasses
+protected Members
+Relationship Between Superclasses and Subclasses
+9.4.1 Creating and Using a CommissionEmployee Class
+9.4.2 Creating and Using a BasePlusCommissionEmployee Class
+9.4.3 Creating a CommissionEmployee–BasePlusCommissionEmployee
+Inheritance Hierarchy
+9.4.4 CommissionEmployee–BasePlusCommissionEmployee
+Inheritance Hierarchy Using protected Instance Variables
+9.4.5 CommissionEmployee–BasePlusCommissionEmployee Inheritance
+Hierarchy Using private Instance Variables
+Constructors in Subclasses
+
+9.5
+
+Introduction
+Time Class Case Study
+
+339
+340
+341
+347
+348
+350
+353
+357
+360
+
+381
+382
+382
+387
+388
+390
+395
+396
+397
+400
+403
+403
+407
+408
+409
+410
+413
+417
+
+425
+426
+427
+429
+430
+430
+435
+440
+443
+446
+450
+
+Contents
+9.6
+9.7
+9.8
+
+Class Object
+Designing with Composition vs. Inheritance
+Wrap-Up
+
+13
+451
+452
+454
+
+10 Object-Oriented Programming: Polymorphism
+and Interfaces
+10.1
+10.2
+10.3
+10.4
+10.5
+
+Introduction
+Polymorphism Examples
+Demonstrating Polymorphic Behavior
+Abstract Classes and Methods
+Case Study: Payroll System Using Polymorphism
+10.5.1 Abstract Superclass Employee
+10.5.2 Concrete Subclass SalariedEmployee
+10.5.3 Concrete Subclass HourlyEmployee
+10.5.4 Concrete Subclass CommissionEmployee
+10.5.5 Indirect Concrete Subclass BasePlusCommissionEmployee
+10.5.6 Polymorphic Processing, Operator instanceof and Downcasting
+10.6 Allowed Assignments Between Superclass and Subclass Variables
+10.7 final Methods and Classes
+10.8 A Deeper Explanation of Issues with Calling Methods from Constructors
+10.9 Creating and Using Interfaces
+10.9.1 Developing a Payable Hierarchy
+10.9.2 Interface Payable
+10.9.3 Class Invoice
+10.9.4 Modifying Class Employee to Implement Interface Payable
+10.9.5 Using Interface Payable to Process Invoices and Employees
+Polymorphically
+10.9.6 Some Common Interfaces of the Java API
+10.10 Java SE 8 Interface Enhancements
+10.10.1 default Interface Methods
+10.10.2 static Interface Methods
+10.10.3 Functional Interfaces
+10.11 Java SE 9 private Interface Methods
+10.12 private Constructors
+10.13 Program to an Interface, Not an Implementation
+10.13.1 Implementation Inheritance Is Best for Small Numbers of
+Tightly Coupled Classes
+10.13.2 Interface Inheritance Is Best for Flexibility
+10.13.3 Rethinking the Employee Hierarchy
+10.14 (Optional) GUI and Graphics Case Study: Drawing with Polymorphism
+10.15 Wrap-Up
+
+11 Exception Handling: A Deeper Look
+11.1
+
+Introduction
+
+459
+460
+462
+463
+465
+468
+469
+471
+473
+474
+476
+477
+482
+482
+483
+484
+486
+487
+487
+489
+491
+492
+493
+493
+494
+494
+495
+495
+496
+496
+496
+497
+498
+500
+
+507
+508
+
+14
+
+Contents
+
+11.2
+11.3
+
+Example: Divide by Zero without Exception Handling
+Example: Handling ArithmeticExceptions and
+
+509
+
+InputMismatchExceptions
+
+11.4 When to Use Exception Handling
+11.5 Java Exception Hierarchy
+11.6 finally Block
+11.7 Stack Unwinding and Obtaining Information from an Exception
+11.8 Chained Exceptions
+11.9 Declaring New Exception Types
+11.10 Preconditions and Postconditions
+11.11 Assertions
+11.12 try-with-Resources: Automatic Resource Deallocation
+11.13 Wrap-Up
+
+511
+517
+517
+521
+525
+528
+530
+531
+531
+533
+534
+
+12 JavaFX Graphical User Interfaces: Part 1
+
+540
+
+12.1
+12.2
+12.3
+12.4
+
+12.5
+
+12.6
+12.7
+
+Introduction
+JavaFX Scene Builder
+JavaFX App Window Structure
+Welcome App—Displaying Text and an Image
+12.4.1 Opening Scene Builder and Creating the File Welcome.fxml
+12.4.2 Adding an Image to the Folder Containing Welcome.fxml
+12.4.3 Creating a VBox Layout Container
+12.4.4 Configuring the VBox Layout Container
+12.4.5 Adding and Configuring a Label
+12.4.6 Adding and Configuring an ImageView
+12.4.7 Previewing the Welcome GUI
+Tip Calculator App—Introduction to Event Handling
+12.5.1 Test-Driving the Tip Calculator App
+12.5.2 Technologies Overview
+12.5.3 Building the App’s GUI
+12.5.4 TipCalculator Class
+12.5.5 TipCalculatorController Class
+Features Covered in the Other JavaFX Chapters
+Wrap-Up
+
+13 JavaFX GUI: Part 2
+13.1
+13.2
+13.3
+
+Introduction
+Laying Out Nodes in a Scene Graph
+Painter App: RadioButtons, Mouse Events and Shapes
+13.3.1 Technologies Overview
+13.3.2 Creating the Painter.fxml File
+13.3.3 Building the GUI
+13.3.4 Painter Subclass of Application
+13.3.5 PainterController Class
+
+541
+542
+543
+544
+544
+545
+545
+546
+546
+547
+549
+549
+550
+551
+553
+560
+562
+567
+567
+
+575
+576
+576
+578
+578
+580
+580
+583
+584
+
+Contents
+
+15
+
+Color Chooser App: Property Bindings and Property Listeners
+13.4.1 Technologies Overview
+13.4.2 Building the GUI
+13.4.3 ColorChooser Subclass of Application
+13.4.4 ColorChooserController Class
+Cover Viewer App: Data-Driven GUIs with JavaFX Collections
+13.5.1 Technologies Overview
+13.5.2 Adding Images to the App’s Folder
+13.5.3 Building the GUI
+13.5.4 CoverViewer Subclass of Application
+13.5.5 CoverViewerController Class
+Cover Viewer App: Customizing ListView Cells
+13.6.1 Technologies Overview
+13.6.2 Copying the CoverViewer App
+13.6.3 ImageTextCell Custom Cell Factory Class
+13.6.4 CoverViewerController Class
+Additional JavaFX Capabilities
+JavaFX 9: Java SE 9 JavaFX Updates
+Wrap-Up
+
+588
+588
+589
+591
+592
+594
+595
+595
+595
+597
+597
+599
+600
+600
+601
+602
+603
+605
+607
+
+14 Strings, Characters and Regular Expressions
+
+616
+
+13.4
+
+13.5
+
+13.6
+
+13.7
+13.8
+13.9
+
+14.1
+14.2
+14.3
+
+14.4
+
+Introduction
+Fundamentals of Characters and Strings
+Class String
+14.3.1 String Constructors
+14.3.2 String Methods length, charAt and getChars
+14.3.3 Comparing Strings
+14.3.4 Locating Characters and Substrings in Strings
+14.3.5 Extracting Substrings from Strings
+14.3.6 Concatenating Strings
+14.3.7 Miscellaneous String Methods
+14.3.8 String Method valueOf
+Class StringBuilder
+14.4.1 StringBuilder Constructors
+14.4.2 StringBuilder Methods length, capacity, setLength and
+ensureCapacity
+
+14.4.3
+
+14.8
+
+633
+
+StringBuilder Methods charAt, setCharAt, getChars and
+reverse
+
+14.5
+14.6
+14.7
+
+617
+617
+618
+618
+619
+621
+625
+627
+628
+629
+630
+631
+632
+
+14.4.4 StringBuilder append Methods
+14.4.5 StringBuilder Insertion and Deletion Methods
+Class Character
+Tokenizing Strings
+Regular Expressions, Class Pattern and Class Matcher
+14.7.1 Replacing Substrings and Splitting Strings
+14.7.2 Classes Pattern and Matcher
+Wrap-Up
+
+634
+635
+637
+638
+643
+644
+649
+651
+653
+
+16
+
+Contents
+
+15 Files, Input/Output Streams, NIO and
+XML Serialization
+15.1
+15.2
+15.3
+15.4
+
+15.5
+15.6
+15.7
+15.8
+
+Introduction
+Files and Streams
+Using NIO Classes and Interfaces to Get File and
+Directory Information
+Sequential Text Files
+15.4.1 Creating a Sequential Text File
+15.4.2 Reading Data from a Sequential Text File
+15.4.3 Case Study: A Credit-Inquiry Program
+15.4.4 Updating Sequential Files
+XML Serialization
+15.5.1 Creating a Sequential File Using XML Serialization
+15.5.2 Reading and Deserializing Data from a Sequential File
+FileChooser and DirectoryChooser Dialogs
+(Optional) Additional java.io Classes
+15.7.1 Interfaces and Classes for Byte-Based Input and Output
+15.7.2 Interfaces and Classes for Character-Based Input and Output
+Wrap-Up
+
+16 Generic Collections
+16.1
+16.2
+16.3
+16.4
+16.5
+16.6
+
+Introduction
+Collections Overview
+Type-Wrapper Classes
+Autoboxing and Auto-Unboxing
+Interface Collection and Class Collections
+Lists
+16.6.1 ArrayList and Iterator
+16.6.2 LinkedList
+16.7 Collections Methods
+16.7.1 Method sort
+16.7.2 Method shuffle
+16.7.3 Methods reverse, fill, copy, max and min
+16.7.4 Method binarySearch
+16.7.5 Methods addAll, frequency and disjoint
+16.8 Class PriorityQueue and Interface Queue
+16.9 Sets
+16.10 Maps
+16.11 Synchronized Collections
+16.12 Unmodifiable Collections
+16.13 Abstract Implementations
+16.14 Java SE 9: Convenience Factory Methods for
+Immutable Collections
+16.15 Wrap-Up
+
+664
+665
+665
+667
+671
+671
+674
+675
+680
+680
+680
+686
+687
+693
+693
+695
+696
+
+704
+705
+705
+707
+707
+707
+708
+709
+711
+716
+716
+720
+722
+724
+725
+727
+728
+731
+735
+735
+736
+736
+740
+
+Contents
+
+17 Lambdas and Streams
+17.1
+17.2
+
+Introduction
+Streams and Reduction
+17.2.1 Summing the Integers from 1 through 10 with a for Loop
+17.2.2 External Iteration with for Is Error Prone
+17.2.3 Summing with a Stream and Reduction
+17.2.4 Internal Iteration
+17.3 Mapping and Lambdas
+17.3.1 Lambda Expressions
+17.3.2 Lambda Syntax
+17.3.3 Intermediate and Terminal Operations
+17.4 Filtering
+17.5 How Elements Move Through Stream Pipelines
+17.6 Method References
+17.6.1 Creating an IntStream of Random Values
+17.6.2 Performing a Task on Each Stream Element with forEach and
+a Method Reference
+17.6.3 Mapping Integers to String Objects with mapToObj
+17.6.4 Concatenating Strings with collect
+17.7 IntStream Operations
+17.7.1 Creating an IntStream and Displaying Its Values
+17.7.2 Terminal Operations count, min, max, sum and average
+17.7.3 Terminal Operation reduce
+17.7.4 Sorting IntStream Values
+17.8 Functional Interfaces
+17.9 Lambdas: A Deeper Look
+17.10 Stream<Integer> Manipulations
+17.10.1 Creating a Stream<Integer>
+17.10.2 Sorting a Stream and Collecting the Results
+17.10.3 Filtering a Stream and Storing the Results for Later Use
+17.10.4 Filtering and Sorting a Stream and Collecting the Results
+17.10.5 Sorting Previously Collected Results
+17.11 Stream<String> Manipulations
+17.11.1 Mapping Strings to Uppercase
+17.11.2 Filtering Strings Then Sorting Them in Case-Insensitive
+Ascending Order
+17.11.3 Filtering Strings Then Sorting Them in Case-Insensitive
+Descending Order
+17.12 Stream<Employee> Manipulations
+17.12.1 Creating and Displaying a List<Employee>
+17.12.2 Filtering Employees with Salaries in a Specified Range
+17.12.3 Sorting Employees By Multiple Fields
+17.12.4 Mapping Employees to Unique-Last-Name Strings
+17.12.5 Grouping Employees By Department
+17.12.6 Counting the Number of Employees in Each Department
+17.12.7 Summing and Averaging Employee Salaries
+
+17
+
+746
+747
+749
+749
+750
+750
+751
+752
+753
+754
+755
+756
+758
+759
+760
+760
+761
+761
+762
+763
+763
+764
+766
+767
+768
+769
+770
+771
+771
+772
+772
+772
+773
+774
+774
+775
+776
+777
+780
+782
+783
+784
+785
+
+18
+
+Contents
+
+17.13 Creating a Stream<String> from a File
+17.14 Streams of Random Values
+17.15 Infinite Streams
+17.16 Lambda Event Handlers
+17.17 Additional Notes on Java SE 8 Interfaces
+17.18 Wrap-Up
+
+18 Recursion
+18.1
+18.2
+18.3
+18.4
+18.5
+18.6
+18.7
+18.8
+18.9
+
+Introduction
+Recursion Concepts
+Example Using Recursion: Factorials
+Reimplementing Class FactorialCalculator Using BigInteger
+Example Using Recursion: Fibonacci Series
+Recursion and the Method-Call Stack
+Recursion vs. Iteration
+Towers of Hanoi
+Fractals
+18.9.1 Koch Curve Fractal
+18.9.2 (Optional) Case Study: Lo Feather Fractal
+18.9.3 (Optional) Fractal App GUI
+18.9.4 (Optional) FractalController Class
+18.10 Recursive Backtracking
+18.11 Wrap-Up
+
+19 Searching, Sorting and Big O
+19.1
+19.2
+19.3
+
+19.4
+19.5
+19.6
+19.7
+19.8
+
+Introduction
+Linear Search
+Big O Notation
+19.3.1 O(1) Algorithms
+19.3.2 O(n) Algorithms
+19.3.3 O(n2) Algorithms
+19.3.4 Big O of the Linear Search
+Binary Search
+19.4.1 Binary Search Implementation
+19.4.2 Efficiency of the Binary Search
+Sorting Algorithms
+Selection Sort
+19.6.1 Selection Sort Implementation
+19.6.2 Efficiency of the Selection Sort
+Insertion Sort
+19.7.1 Insertion Sort Implementation
+19.7.2 Efficiency of the Insertion Sort
+Merge Sort
+19.8.1 Merge Sort Implementation
+19.8.2 Efficiency of the Merge Sort
+
+786
+789
+791
+793
+793
+794
+
+808
+809
+810
+811
+813
+815
+818
+819
+821
+823
+824
+825
+827
+829
+834
+834
+
+843
+844
+845
+848
+848
+848
+848
+849
+849
+850
+853
+854
+854
+855
+857
+857
+858
+860
+861
+861
+866
+
+Contents
+
+19
+
+19.9 Big O Summary for This Chapter’s Searching and Sorting Algorithms
+19.10 Massive Parallelism and Parallel Algorithms
+19.11 Wrap-Up
+
+866
+867
+867
+
+20 Generic Classes and Methods: A Deeper Look
+
+873
+
+20.1
+20.2
+20.3
+20.4
+20.5
+20.6
+20.7
+20.8
+
+Introduction
+Motivation for Generic Methods
+Generic Methods: Implementation and Compile-Time Translation
+Additional Compile-Time Translation Issues: Methods That Use a Type
+Parameter as the Return Type
+Overloading Generic Methods
+Generic Classes
+Wildcards in Methods That Accept Type Parameters
+Wrap-Up
+
+21 Custom Generic Data Structures
+21.1
+21.2
+21.3
+21.4
+
+874
+874
+876
+879
+882
+883
+890
+894
+
+898
+
+Introduction
+Self-Referential Classes
+Dynamic Memory Allocation
+Linked Lists
+21.4.1 Singly Linked Lists
+21.4.2 Implementing a Generic List Class
+21.4.3 Generic Classes ListNode and List
+21.4.4 Class ListTest
+21.4.5 List Method insertAtFront
+21.4.6 List Method insertAtBack
+21.4.7 List Method removeFromFront
+21.4.8 List Method removeFromBack
+21.4.9 List Method print
+21.4.10 Creating Your Own Packages
+Stacks
+Queues
+Trees
+Wrap-Up
+
+899
+900
+900
+901
+901
+902
+905
+905
+907
+908
+908
+909
+910
+910
+915
+918
+920
+927
+
+22 JavaFX Graphics and Multimedia
+
+952
+
+21.5
+21.6
+21.7
+21.8
+
+22.1
+22.2
+
+Introduction
+Controlling Fonts with Cascading Style Sheets (CSS)
+22.2.1 CSS That Styles the GUI
+22.2.2 FXML That Defines the GUI—Introduction to XML Markup
+22.2.3 Referencing the CSS File from FXML
+22.2.4 Specifying the VBox’s Style Class
+22.2.5 Programmatically Loading CSS
+
+953
+954
+954
+957
+960
+960
+960
+
+20
+
+Contents
+
+22.3
+
+Displaying Two-Dimensional Shapes
+22.3.1 Defining Two-Dimensional Shapes with FXML
+22.3.2 CSS That Styles the Two-Dimensional Shapes
+22.4 Polylines, Polygons and Paths
+22.4.1 GUI and CSS
+22.4.2 PolyShapesController Class
+22.5 Transforms
+22.6 Playing Video with Media, MediaPlayer and MediaViewer
+22.6.1 VideoPlayer GUI
+22.6.2 VideoPlayerController Class
+22.7 Transition Animations
+22.7.1 TransitionAnimations.fxml
+22.7.2 TransitionAnimationsController Class
+22.8 Timeline Animations
+22.9 Frame-by-Frame Animation with AnimationTimer
+22.10 Drawing on a Canvas
+22.11 Three-Dimensional Shapes
+22.12 Wrap-Up
+
+23 Concurrency
+23.1
+23.2
+
+961
+961
+964
+966
+967
+968
+971
+973
+974
+976
+980
+980
+982
+986
+989
+991
+996
+999
+
+1015
+
+Introduction
+Thread States and Life Cycle
+23.2.1 New and Runnable States
+23.2.2 Waiting State
+23.2.3 Timed Waiting State
+23.2.4 Blocked State
+23.2.5 Terminated State
+23.2.6 Operating-System View of the Runnable State
+23.2.7 Thread Priorities and Thread Scheduling
+23.2.8 Indefinite Postponement and Deadlock
+23.3 Creating and Executing Threads with the Executor Framework
+23.4 Thread Synchronization
+23.4.1 Immutable Data
+23.4.2 Monitors
+23.4.3 Unsynchronized Mutable Data Sharing
+23.4.4 Synchronized Mutable Data Sharing—Making Operations Atomic
+23.5 Producer/Consumer Relationship without Synchronization
+23.6 Producer/Consumer Relationship: ArrayBlockingQueue
+23.7 (Advanced) Producer/Consumer Relationship with synchronized,
+wait, notify and notifyAll
+23.8 (Advanced) Producer/Consumer Relationship: Bounded Buffers
+23.9 (Advanced) Producer/Consumer Relationship: The Lock and
+Condition Interfaces
+23.10 Concurrent Collections
+23.11 Multithreading in JavaFX
+
+1016
+1018
+1019
+1019
+1019
+1019
+1019
+1020
+1020
+1021
+1021
+1025
+1026
+1026
+1027
+1031
+1034
+1042
+1045
+1051
+1059
+1066
+1068
+
+Contents
+23.11.1 Performing Computations in a Worker Thread:
+Fibonacci Numbers
+23.11.2 Processing Intermediate Results: Sieve of Eratosthenes
+23.12 sort/parallelSort Timings with the Java SE 8 Date/Time API
+23.13 Java SE 8: Sequential vs. Parallel Streams
+23.14 (Advanced) Interfaces Callable and Future
+23.15 (Advanced) Fork/Join Framework
+23.16 Wrap-Up
+
+24 Accessing Databases with JDBC
+24.1
+24.2
+24.3
+24.4
+
+Introduction
+Relational Databases
+A books Database
+SQL
+24.4.1 Basic SELECT Query
+24.4.2 WHERE Clause
+24.4.3 ORDER BY Clause
+24.4.4 Merging Data from Multiple Tables: INNER JOIN
+24.4.5 INSERT Statement
+24.4.6 UPDATE Statement
+24.4.7 DELETE Statement
+24.5 Setting Up a Java DB Database
+24.5.1 Creating the Chapter’s Databases on Windows
+24.5.2 Creating the Chapter’s Databases on macOS
+24.5.3 Creating the Chapter’s Databases on Linux
+24.6 Connecting to and Querying a Database
+24.6.1 Automatic Driver Discovery
+24.6.2 Connecting to the Database
+24.6.3 Creating a Statement for Executing Queries
+24.6.4 Executing a Query
+24.6.5 Processing a Query’s ResultSet
+24.7 Querying the books Database
+24.7.1 ResultSetTableModel Class
+24.7.2 DisplayQueryResults App’s GUI
+24.7.3 DisplayQueryResultsController Class
+24.8 RowSet Interface
+24.9 PreparedStatements
+24.9.1 AddressBook App That Uses PreparedStatements
+24.9.2 Class Person
+24.9.3 Class PersonQueries
+24.9.4 AddressBook GUI
+24.9.5 Class AddressBookController
+24.10 Stored Procedures
+24.11 Transaction Processing
+24.12 Wrap-Up
+
+21
+
+1069
+1074
+1080
+1083
+1085
+1090
+1090
+
+1102
+1103
+1104
+1105
+1109
+1110
+1110
+1112
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1120
+1120
+1122
+1122
+1123
+1123
+1124
+1125
+1125
+1132
+1132
+1137
+1140
+1141
+1141
+1143
+1146
+1147
+1152
+1152
+1153
+
+22
+
+Contents
+
+25 Introduction to JShell: Java 9’s REPL
+25.1
+25.2
+25.3
+
+Introduction
+Installing JDK 9
+Introduction to JShell
+25.3.1 Starting a JShell Session
+25.3.2 Executing Statements
+25.3.3 Declaring Variables Explicitly
+25.3.4 Listing and Executing Prior Snippets
+25.3.5 Evaluating Expressions and Declaring Variables Implicitly
+25.3.6 Using Implicitly Declared Variables
+25.3.7 Viewing a Variable’s Value
+25.3.8 Resetting a JShell Session
+25.3.9 Writing Multiline Statements
+25.3.10 Editing Code Snippets
+25.3.11 Exiting JShell
+25.4 Command-Line Input in JShell
+25.5 Declaring and Using Classes
+25.5.1 Creating a Class in JShell
+25.5.2 Explicitly Declaring Reference-Type Variables
+25.5.3 Creating Objects
+25.5.4 Manipulating Objects
+25.5.5 Creating a Meaningful Variable Name for an Expression
+25.5.6 Saving and Opening Code-Snippet Files
+25.6 Discovery with JShell Auto-Completion
+25.6.1 Auto-Completing Identifiers
+25.6.2 Auto-Completing JShell Commands
+25.7 Exploring a Class’s Members and Viewing Documentation
+25.7.1 Listing Class Math’s static Members
+25.7.2 Viewing a Method’s Parameters
+25.7.3 Viewing a Method’s Documentation
+25.7.4 Viewing a public Field’s Documentation
+25.7.5 Viewing a Class’s Documentation
+25.7.6 Viewing Method Overloads
+25.7.7 Exploring Members of a Specific Object
+25.8 Declaring Methods
+25.8.1 Forward Referencing an Undeclared Method—Declaring
+Method displayCubes
+25.8.2 Declaring a Previously Undeclared Method
+25.8.3 Testing cube and Replacing Its Declaration
+25.8.4 Testing Updated Method cube and Method displayCubes
+25.9 Exceptions
+25.10 Importing Classes and Adding Packages to the CLASSPATH
+25.11 Using an External Editor
+25.12 Summary of JShell Commands
+25.12.1 Getting Help in JShell
+25.12.2 /edit Command: Additional Features
+
+1161
+1162
+1164
+1164
+1165
+1165
+1166
+1168
+1170
+1170
+1171
+1171
+1171
+1172
+1175
+1175
+1176
+1177
+1177
+1178
+1178
+1179
+1180
+1180
+1181
+1182
+1182
+1183
+1183
+1184
+1184
+1185
+1185
+1186
+1188
+1188
+1188
+1189
+1189
+1190
+1191
+1193
+1195
+1196
+1197
+
+Contents
+25.12.3 /reload Command
+25.12.4 /drop Command
+25.12.5 Feedback Modes
+25.12.6 Other JShell Features Configurable with /set
+25.13 Keyboard Shortcuts for Snippet Editing
+25.14 How JShell Reinterprets Java for Interactive Use
+25.15 IDE JShell Support
+25.16 Wrap-Up
+
+23
+1197
+1198
+1198
+1200
+1201
+1201
+1202
+1202
+
+Chapters on the Web
+
+1218
+
+A
+
+Operator Precedence Chart
+
+1219
+
+B
+
+ASCII Character Set
+
+1221
+
+C
+
+Keywords and Reserved Words
+
+1222
+
+D
+
+Primitive Types
+
+1223
+
+E
+
+Using the Debugger
+
+1224
+
+E.1
+E.2
+E.3
+E.4
+E.5
+E.6
+E.7
+
+Introduction
+Breakpoints and the run, stop, cont and print Commands
+The print and set Commands
+Controlling Execution Using the step, step up and next Commands
+The watch Command
+The clear Command
+Wrap-Up
+
+1225
+1225
+1229
+1231
+1233
+1235
+1238
+
+Appendices on the Web
+
+1239
+
+Index
+
+1241
+
+Online Chapters and Appendices
+The online chapters and appendices are located on the book’s Companion Website. See
+the book’s inside front cover for details.
+
+26 Swing GUI Components: Part 1
+27 Graphics and Java 2D
+
+24
+
+Contents
+
+28 Networking
+29 Java Persistence API (JPA)
+30 JavaServer™ Faces Web Apps: Part 1
+31 JavaServer™ Faces Web Apps: Part 2
+32 REST-Based Web Services
+33 (Optional) ATM Case Study, Part 1:
+Object-Oriented Design with the UML
+
+34 (Optional) ATM Case Study, Part 2:
+Implementing an Object-Oriented Design
+
+35 Swing GUI Components: Part 2
+36 Java Module System and Other Java 9 Features
+F Using the Java API Documentation
+G Creating Documentation with javadoc
+H Unicode®
+I Formatted Output
+J Number Systems
+K Bit Manipulation
+L Labeled break and continue Statements
+M UML 2: Additional Diagram Types
+N Design Patterns
+
+

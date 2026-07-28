@@ -1,0 +1,10 @@
+{
+  "name": "semicolon-java-practice-bank",
+  "version": "1.0.0",
+  "description": "Semicolon Africa Java Practice Bank - Deitel & Deitel curriculum",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "restart": "pkill -f 'node server.js' || true && sleep 1 && node server.js"
+  }
+}
