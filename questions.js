@@ -1,4 +1,4 @@
-window.CHAPTERS = [
+const CHAPTERS = [
     {
         "id": 1,
         "name": "Java Syntax, I/O & Variables"
@@ -100,9 +100,8 @@ window.CHAPTERS = [
         "name": "Enterprise Java & REST Web APIs"
     }
 ];
-var CHAPTERS = window.CHAPTERS;
 
-window.QUESTIONS = [
+const QUESTIONS = [
     {
         "id": "c1-01",
         "chapter": 1,
@@ -9854,4 +9853,3 @@ window.QUESTIONS = [
         "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // TODO: Write your code for Concept 25.30 \u2014 Full Stack Enterprise REST Controller\n        \n    }\n}"
     }
 ];
-var QUESTIONS = window.QUESTIONS;

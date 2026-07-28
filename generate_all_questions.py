@@ -904,10 +904,8 @@ for i in range(1, 31):
 
 # Write to questions.js format
 concepts_list = [{'id': c[0], 'name': c[1]} for c in concepts]
-out_js = "window.CHAPTERS = " + json.dumps(concepts_list, indent=4) + ";\n"
-out_js += "var CHAPTERS = window.CHAPTERS;\n\n"
-out_js += "window.QUESTIONS = " + json.dumps(questions, indent=4) + ";\n"
-out_js += "var QUESTIONS = window.QUESTIONS;\n"
+out_js = "const CHAPTERS = " + json.dumps(concepts_list, indent=4) + ";\n\n"
+out_js += "const QUESTIONS = " + json.dumps(questions, indent=4) + ";\n"
 
 with open("questions.js", "w") as f:
     f.write(out_js)

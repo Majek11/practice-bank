@@ -702,18 +702,6 @@
 
     <script src="./questions.js"></script>
     <script>
-        let CHAPTERS = window.CHAPTERS || [];
-        let QUESTIONS = window.QUESTIONS || [];
-
-        function ensureDataLoaded() {
-            if ((!CHAPTERS || !CHAPTERS.length) && window.CHAPTERS) {
-                CHAPTERS = window.CHAPTERS;
-            }
-            if ((!QUESTIONS || !QUESTIONS.length) && window.QUESTIONS) {
-                QUESTIONS = window.QUESTIONS;
-            }
-        }
-
         let currentView = "grid";
         let activeChapter = "All";
         let activeDiff = "All";
@@ -754,7 +742,6 @@
         }
 
         function updateProgress() {
-            ensureDataLoaded();
             const done = Object.keys(doneState).filter(k => doneState[k]);
             const doneCount = done.length;
             const total = QUESTIONS.length;
@@ -846,7 +833,6 @@
         }
 
         function renderGrid() {
-            ensureDataLoaded();
             const gridEl = document.getElementById("gridContainer");
             gridEl.innerHTML = CHAPTERS.map(ch => {
                 const chQuestions = QUESTIONS.filter(q => q.chapter === ch.id);
@@ -882,7 +868,6 @@
         }
 
         function renderFilters() {
-            ensureDataLoaded();
             const chEl = document.getElementById("chapterFilters");
             let html = `<div class="filter-item ${activeChapter === 'All' ? 'active' : ''}" onclick="setChapter('All')">All Concepts<span>${QUESTIONS.length}</span></div>`;
             CHAPTERS.forEach(ch => {
@@ -904,7 +889,6 @@
         function onSearch(v) { searchTerm = v.trim().toLowerCase(); if (currentView === 'grid') renderGrid(); else renderList(); }
 
         function renderList() {
-            ensureDataLoaded();
             const filtered = QUESTIONS.filter(q =>
                 (activeChapter === "All" || q.chapter === activeChapter) &&
                 (activeDiff === "All" || q.difficulty === activeDiff) &&
